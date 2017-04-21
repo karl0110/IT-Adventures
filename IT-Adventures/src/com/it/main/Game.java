@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 
-	public static void main(String[] args){
+	public static void main(String args[]){
 		Game game = new Game();//erstellt eine neue Intanz der Game Klasse.
 		JFrame frame = new JFrame();//ein neuer JFrame wird erstellt.
 		
