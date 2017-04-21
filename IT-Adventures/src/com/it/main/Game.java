@@ -18,6 +18,9 @@ public class Game extends Canvas implements Runnable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Thread thread;//Variable zum Speichern des Threads.
+	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 
 	@Override
 	public void run() {
@@ -46,6 +49,24 @@ public class Game extends Canvas implements Runnable{
 	
 	
 	private synchronized void start(){
-		
+		if (running)//Falls das Spiel bereits läuft, muss es nicht nochmal gestartet werden.
+			return;
+
+		running = true;//Das Spiel startet jetzt.
+		thread = new Thread(this);//Ein neuer Thread wird erstellt.
+		thread.start();//Der erstellte Thread wird gestartet.(Die Methode run() wird ausgeführt.
+	}
+	
+	public synchronized void stop() {
+		if (!running)
+			return;
+		running = false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		System.exit(1);
 	}
 }
