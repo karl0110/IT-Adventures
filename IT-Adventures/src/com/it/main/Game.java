@@ -58,15 +58,15 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public synchronized void stop() {
-		if (!running)
+		if (!running)//Falls das Spiel bereits gestoppt wurde, muss es dies nicht nochmal tuen.
 			return;
-		running = false;
+		running = false;//Das Spiel wird als gestoppt angezeigt.
 		try {
-			thread.join();
+			thread.join();//Der Thread wird beendet.
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
 		}
-		System.exit(1);
+		System.exit(1);//Das Programm wird beendet
 	}
 }
