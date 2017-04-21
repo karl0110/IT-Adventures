@@ -34,8 +34,18 @@ public class Game extends Canvas implements Runnable{
 		game.setMaximumSize(new Dimension(WIDTH,HEIGHT));//setzt die maximale Größe des Spielfensters.
 		
 		frame.add(game);//Das Spiel wird dem JFrame hinzugefügt um Fensterpreferenzen zu übernehmen.
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Ermöglicht das Beenden des Programmes durch Schließen des Fensters.
+		frame.setUndecorated(true);//Entfernt die Menüleiste oben am Bildschirm (Vollbild)
+		frame.setResizable(false);//Fenster kann nicht vergrößert oder verkleinert werden, für korrekt Skalierung notwendig.
+		frame.setLocationRelativeTo(null);//Bewegt Fesnter in die Mitte des Bildschirms.
+		frame.setVisible(true);//Macht das Fenster sichtbar.
+		
+		game.start();//Ruft die Methode start() zum initialisieren des Threads auf.
 		
 	}
 	
 	
+	private synchronized void start(){
+		
+	}
 }
