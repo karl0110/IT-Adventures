@@ -4,6 +4,8 @@ import java.awt.Canvas;
 
 public class Game extends Canvas implements Runnable{
 
+	public static final int WIDTH=1920;
+	public static final int HIEGHT=WIDTH/16*9;
 	/**
 	 * 
 	 */
