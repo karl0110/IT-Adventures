@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 
 	@Override
-	public void run() {
+	public void run() {//SFKJHSDIF
 		// TODO Auto-generated method stub
 		
 	}
