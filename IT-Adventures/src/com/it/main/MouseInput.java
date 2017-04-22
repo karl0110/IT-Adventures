@@ -15,8 +15,12 @@ public class MouseInput implements MouseListener {
 		
 		if(Game.State==Game.STATE.MainMenu){
 			Rectangle playButton =new Rectangle(0,Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
+			Rectangle exitButton =new Rectangle(0,Game.HEIGHT/2+Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			if(playButton.intersects(mouse)){
 				Game.State=Game.STATE.PlayMenu;
+			}
+			if(exitButton.intersects(mouse)){
+				System.exit(0);
 			}
 		}
 		else if(Game.State==Game.STATE.PlayMenu){
