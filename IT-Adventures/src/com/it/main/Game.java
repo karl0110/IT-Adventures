@@ -78,6 +78,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		
 		this.addKeyListener(new KeyInput());
+		this.addMouseListener(new MouseInput());
 	}
 	
 	public void tick(){
