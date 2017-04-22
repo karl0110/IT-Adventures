@@ -37,16 +37,30 @@ public class Game extends Canvas implements Runnable{
 		final int TARGET_FPS = 60;
 		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 		double delta =0;
+		int frames=0;
+		int updates=0;
+		long lastFrameTime=System.currentTimeMillis();
 		
 		while(running){
 			long now = System.nanoTime();
+			
 		    delta+=(now-lastLoopTime)/OPTIMAL_TIME;
 		    lastLoopTime=now;
 		    if(delta>=1){
 		    	tick();
+		    	updates++;
 		    	delta--;
+		    	
 		    }
+		    
 		    render();
+		    frames++;
+		    if(System.currentTimeMillis()-lastFrameTime>1000){
+		    	lastFrameTime+=1000;
+		    	System.out.println("Ticks: "+updates+" FPS: "+frames);
+		    	updates=0;
+		    	frames=0;
+		    }
 		    
 		    
 		    
@@ -108,7 +122,7 @@ public class Game extends Canvas implements Runnable{
 		frame.setResizable(false);//Fenster kann nicht vergrößert oder verkleinert werden, für korrekt Skalierung notwendig.
 		frame.setLocationRelativeTo(null);//Bewegt Fesnter in die Mitte des Bildschirms.
 		frame.setVisible(true);//Macht das Fenster sichtbar.
-		
+		// Tyrus ist der Boss
 		game.start();//Ruft die Methode start() zum initialisieren des Threads auf.
 		
 	}
