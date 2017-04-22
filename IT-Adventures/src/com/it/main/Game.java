@@ -71,7 +71,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private void init(){
 		try {
-			background = ImageIO.read(getClass().getResource("/images/play_background.png"));
+			background = ImageIO.read(getClass().getResource("/images/lul.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
