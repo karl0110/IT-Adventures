@@ -29,7 +29,14 @@ public class Game extends Canvas implements Runnable{
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
 	private BufferedImage background;
-
+	private Menu menu;
+	private BufferedImageLoader imageLoader;
+	
+	public enum STATE{
+		MainMenu,PlayMenu
+	};
+	public static STATE State=STATE.MainMenu;
+	
 	@Override
 	public void run() {
 		init();
@@ -79,6 +86,8 @@ public class Game extends Canvas implements Runnable{
 		
 		this.addKeyListener(new KeyInput());
 		this.addMouseListener(new MouseInput());
+		imageLoader=new BufferedImageLoader();
+		menu=new Menu(imageLoader,this);
 	}
 	
 	public void tick(){
@@ -94,8 +103,14 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		////////////////
+		if(Game.State==Game.STATE.MainMenu){
+			menu.render(g);
+		}
+		else if(Game.State==Game.STATE.PlayMenu)
+		{
+			menu.render(g);
+		}
 		
-		g.drawImage(background, 0, 0, this);
 		
 		/////////////////
 		

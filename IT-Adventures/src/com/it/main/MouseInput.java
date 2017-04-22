@@ -11,6 +11,16 @@ public class MouseInput implements MouseListener {
 		int x=e.getX();
 		int y=e.getY();
 		Rectangle mouse =new Rectangle(x,y,1,1);
+		Rectangle playButton =new Rectangle(0,Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
+		
+		if(Game.State==Game.STATE.MainMenu){
+			if(playButton.intersects(mouse)){
+				Game.State=Game.STATE.PlayMenu;
+			}
+		}
+		else if(Game.State==Game.STATE.PlayMenu){
+			
+		}
 		
 	}
 
