@@ -62,6 +62,8 @@ public class Game extends Canvas implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		this.addKeyListener(new KeyInput());
 	}
 	
 	public void tick(){
