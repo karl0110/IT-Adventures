@@ -78,7 +78,7 @@ public class Game extends Canvas implements Runnable{
 		imageLoader=new BufferedImageLoader();
 		ssLoader=new SpriteSheetLoader(imageLoader);
 		this.addKeyListener(new KeyInput());
-		menu=new Menu(imageLoader,this,ssLoader);
+		menu=new Menu(imageLoader,this);
 		this.addMouseListener(new MouseInput(menu));
 		
 		
