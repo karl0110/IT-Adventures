@@ -6,6 +6,12 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener {
 
+	private Menu menu;
+	
+	public MouseInput(Menu menu){
+		this.menu=menu;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int x=e.getX();
@@ -17,7 +23,10 @@ public class MouseInput implements MouseListener {
 			Rectangle playButton =new Rectangle(0,Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			Rectangle exitButton =new Rectangle(0,Game.HEIGHT/2+Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			if(playButton.intersects(mouse)){
-				Game.State=Game.STATE.PlayMenu;
+				
+				menu.setAnimating(true);
+				
+				
 			}
 			if(exitButton.intersects(mouse)){
 				System.exit(0);
