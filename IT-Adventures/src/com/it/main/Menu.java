@@ -26,12 +26,12 @@ public class Menu {
 
 	public void tick(){
 		if(animating){
-			x-=15f;
-			y-=10f;
-			width+=30f;
-			height+=20f;
+			x-=30f;
+			y-=20f;
+			width+=60f;
+			height+=40f;
 		}
-		if(width==5760){
+		if(width==9600){
 			animating=false;
 					width=1920;
 					height=1080;
