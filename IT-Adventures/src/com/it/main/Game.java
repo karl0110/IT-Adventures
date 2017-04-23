@@ -4,10 +4,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /*
@@ -78,7 +75,7 @@ public class Game extends Canvas implements Runnable{
 		imageLoader=new BufferedImageLoader();
 		ssLoader=new SpriteSheetLoader(imageLoader);
 		this.addKeyListener(new KeyInput());
-		menu=new Menu(imageLoader,this,ssLoader);
+		menu=new Menu(imageLoader,this);
 		this.addMouseListener(new MouseInput(menu));
 		
 		
