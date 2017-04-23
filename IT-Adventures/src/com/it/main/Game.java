@@ -40,34 +40,32 @@ public class Game extends Canvas implements Runnable{
 	@Override
 	public void run() {
 		init();
-		long lastLoopTime = System.nanoTime();
-		final int TARGET_FPS = 60;
-		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-		double delta =0;
-		int frames=0;
-		int updates=0;
-		long lastFrameTime=System.currentTimeMillis();
-		
-		while(running){
+		long lastTime = System.nanoTime();
+		final double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		int updates = 0;
+		int frames = 0;
+		long timer = System.currentTimeMillis();
+
+		while (running) {
 			long now = System.nanoTime();
-			
-		    delta+=(now-lastLoopTime)/OPTIMAL_TIME;
-		    lastLoopTime=now;
-		    if(delta>=1){
-		    	tick();
-		    	updates++;
-		    	delta--;
-		    	
-		    }
-		    
-		    render();
-		    frames++;
-		    if(System.currentTimeMillis()-lastFrameTime>1000){
-		    	lastFrameTime+=1000;
-		    	System.out.println("Ticks: "+updates+" FPS: "+frames);
-		    	updates=0;
-		    	frames=0;
-		    }
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			if (delta >= 1) {
+				tick();
+				updates++;
+				delta--;
+			}
+			render();
+			frames++;
+
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.println("Ticks: " + updates + " FPS: " + frames);
+				updates = 0;
+				frames = 0;
+			}
 		    
 		    
 		    
@@ -87,7 +85,13 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void tick(){
-		
+		if(Game.State==Game.STATE.MainMenu){
+			menu.tick();
+		}
+		else if(Game.State==Game.STATE.PlayMenu)
+		{
+			menu.tick();
+		}
 	}
 	
 	public void render(){
