@@ -10,7 +10,7 @@ public class Menu {
 	private BufferedImage mainMenuBackground,playMenuBackground;
 	
 	public Menu(BufferedImageLoader imageLoader, Game game){
-		mainMenuBackground=imageLoader.loadImage("/images/lul.png");
+		mainMenuBackground=imageLoader.loadImage("/images/mainMenuBackground.png");
 		playMenuBackground=imageLoader.loadImage("/images/play_Background.png");
 		
 	}

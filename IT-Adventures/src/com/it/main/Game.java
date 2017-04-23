@@ -28,7 +28,6 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;//Variable zum Speichern des Threads.
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
-	private BufferedImage background;
 	private Menu menu;
 	private BufferedImageLoader imageLoader;
 	
@@ -77,12 +76,6 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void init(){
-		try {
-			background = ImageIO.read(getClass().getResource("/images/lul.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		this.addKeyListener(new KeyInput());
 		this.addMouseListener(new MouseInput());
