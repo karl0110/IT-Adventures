@@ -21,11 +21,11 @@ public class Menu {
 	public void tick(){
 		if(animating){
 			x-=30f;
-			y-=20f;
+			y-=10f;
 			width+=60f;
 			height+=40f;
 		}
-		if(width==9600){
+		if(width==7680){
 			animating=false;
 					width=1920;
 					height=1080;

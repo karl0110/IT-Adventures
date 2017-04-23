@@ -7,13 +7,14 @@ import java.awt.image.BufferedImage;
 public abstract class GameObject {
 
 	protected float x,y,velX,velY,width,height;
-	protected boolean falling,jumping;
+	protected boolean falling,jumping,passable;
 	
 	private BufferedImage image;
 	
-	public GameObject(BufferedImageLoader imageLoader) {
+	public GameObject(BufferedImageLoader imageLoader,ObjectType type) {
 		
-		image = imageLoader.loadImage("/images/6b0fd161bf4a8340a9a9461576be53a5.jpg");
+		image = imageLoader.loadImage(type.imagePath);
+		this.passable=type.passable;
 	}
 	
 	public abstract void render(Graphics g);
