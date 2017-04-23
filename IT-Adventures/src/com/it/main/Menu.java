@@ -7,7 +7,6 @@ public class Menu {
 
 	private BufferedImage mainMenuBackground, playMenuBackground;
 	private boolean animating=false;
-	private BufferedImageLoader imageLoader;
 	private float x,y=0;
 	private float width=1920;
 	private float height=1080;
@@ -15,7 +14,7 @@ public class Menu {
 	public Menu(BufferedImageLoader imageLoader, Game game) {
 		mainMenuBackground = imageLoader.loadImage("/images/mainMenuBackground.png");
 		playMenuBackground = imageLoader.loadImage("/images/play_Background.png");
-		this.imageLoader=imageLoader;
+		
 
 	}
 
