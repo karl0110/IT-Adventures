@@ -1,14 +1,13 @@
 package com.it.main;
 
-//Punchie
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 
 public abstract class GameObject {
 
-	protected float x,y,velX,velY;
-	protected int width,height;
+	protected float x,y,velX,velY,width,height;
+	protected boolean falling,jumping;
 	
 	private BufferedImage image;
 	
