@@ -77,6 +77,8 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(new KeyInput());
 		menu=new Menu(imageLoader,this);
 		this.addMouseListener(new MouseInput(menu));
+		Sound sound = new Sound();
+		sound.playSound("/sound/jäger.wav");
 		
 		
 	}
