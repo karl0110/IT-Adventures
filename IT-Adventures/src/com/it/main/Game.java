@@ -27,7 +27,6 @@ public class Game extends Canvas implements Runnable{
 	
 	private Menu menu;
 	private BufferedImageLoader imageLoader;
-	private SpriteSheetLoader ssLoader;
 	
 	public enum STATE{
 		MainMenu,PlayMenu
@@ -73,7 +72,6 @@ public class Game extends Canvas implements Runnable{
 	
 	private void init(){
 		imageLoader=new BufferedImageLoader();
-		ssLoader=new SpriteSheetLoader(imageLoader);
 		this.addKeyListener(new KeyInput());
 		menu=new Menu(imageLoader,this);
 		this.addMouseListener(new MouseInput(menu));
