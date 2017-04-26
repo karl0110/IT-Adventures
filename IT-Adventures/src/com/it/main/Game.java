@@ -14,8 +14,8 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable{
 
-	public static final int WIDTH=1920;//Klassenkonstante zum Festlegen der Breite des Fensters.
-	public static final int HEIGHT=WIDTH/16*9;//Klassenkonstante welche mithilfe der Breite die Höhe des Fensters errechnet.
+	public static final int WIDTH=1280;//Klassenkonstante zum Festlegen der Breite des Fensters.
+	public static final int HEIGHT=1024;//Klassenkonstante welche mithilfe der Breite die Höhe des Fensters errechnet.
 	
 	/**
 	 * 
