@@ -6,55 +6,61 @@ import java.awt.image.BufferedImage;
 public class Menu {
 
 	private BufferedImage mainMenuBackground, playMenuBackground;
-	private boolean animating=false;
+	private boolean animatingPlay=false;
 	private float x,y=0;
-	private float width=Game.WIDTH;
-	private float height=Game.HEIGHT;
+	private Sound sound;
 
-	public Menu(BufferedImageLoader imageLoader, Game game) {
+	public Menu(BufferedImageLoader imageLoader, Game game,Sound sound) {
 		mainMenuBackground = imageLoader.loadImage("/images/mainMenuBackground.png");
 		playMenuBackground = imageLoader.loadImage("/images/play_Background.png");
+		this.sound=sound;
 		
 
 	}
 
 	public void tick(){
-		if(animating){
-			x-=30f;
-			y-=10f;
-			width+=60f;
-			height+=40f;
+		if(animatingPlay){
+			
+			y+=50f;
+			if(y>(-1*(Game.HEIGHT/32))){
+				sound.playSound("/sound/fall.wav");
+				animatingPlay=false;
+				y=0;
+			}
 		}
-		if(width==7680){
-			animating=false;
-					width=1920;
-					height=1080;
-					x=0;
-					y=0;
-					Game.State=Game.STATE.PlayMenu;
-		}
+		
 	}
 	
 	public void render(Graphics g) {
+		if(animatingPlay){
+			g.drawImage(mainMenuBackground,0,0,Game.WIDTH,Game.HEIGHT, null);
+		}
 		if (Game.State == Game.STATE.MainMenu) {
 		
 			
-			g.drawImage(mainMenuBackground,(int)x,(int)y,(int)width,(int)height, null);
+			g.drawImage(mainMenuBackground,0,0,Game.WIDTH,Game.HEIGHT, null);
 			
 		} else if (Game.State == Game.STATE.PlayMenu) {
-			g.drawImage(playMenuBackground, 0, 0, null);
+			g.drawImage(playMenuBackground, (int)x,(int)y,Game.WIDTH,Game.HEIGHT, null);
 		}
 		
 
 	}
 	
 
-	public boolean isAnimating() {
-		return animating;
+	public boolean isAnimatingPlay() {
+		return animatingPlay;
 	}
 
-	public void setAnimating(boolean animating) {
-		this.animating = animating;
+	public void setAnimatingPlay(boolean animatingPlay) {
+		this.animatingPlay = animatingPlay;
+	}
+	
+	public void startPlayAnimation(){
+		
+		y=(-1080);
+		animatingPlay=true;
+		Game.State=Game.STATE.PlayMenu;
 	}
 
 }
