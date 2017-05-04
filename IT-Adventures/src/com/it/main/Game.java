@@ -14,32 +14,33 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable{
 
-	public static final int WIDTH=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;//Klassenkonstante zum Festlegen der Breite des Fensters.
-	public static final int HEIGHT=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;//Klassenkonstante welche mithilfe der Breite die Höhe des Fensters errechnet.
+	public static final int WIDTH=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;//Klassenkonstante für die Breite des Fensters, wird automatisch auf die maximale Breite des jeweiligen Bildschirms gesetzt.
+	public static final int HEIGHT=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;//Klassenkonstante für die Höhe des Fensters, wird automatisch auf die maximale Höhe des jeweiligen Bildschirms gesetzt.
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Thread thread;//Variable zum Speichern des Threads.
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
-	private Menu menu;
-	private BufferedImageLoader imageLoader;
+	private Menu menu;//Speichert das Menu Objekt
+	private BufferedImageLoader imageLoader;//Specihert BufferedImageLoader Objekt.
 	
-	public enum STATE{
+	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu
 	};
-	public static STATE State=STATE.MainMenu;
+	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
-	@Override
+	/*
+	 * This Method is run when the Thread is started. It contains the initilization of things needed for the Game and the Main Game Loop.
+	 * 
+	 */
 	public void run() {
 		init();
-		long lastTime = System.nanoTime();
-		final double amountOfTicks = 60.0;
-		double ns = 1000000000 / amountOfTicks;
-		double delta = 0;
+		long lastTime = System.nanoTime();//Saves the current Time in a long Variable to count time.
+		final double amountOfTicks = 60.0;//The Amount of times the Method tick() is run in 1 second.
+		double ns = 1000000000 / amountOfTicks;//Calculates the time that passes before the tick() Method is run again.
+		double delta = 0;//
 		int updates = 0;
 		int frames = 0;
 		long timer = System.currentTimeMillis();
