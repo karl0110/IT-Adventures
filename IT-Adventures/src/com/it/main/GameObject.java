@@ -10,11 +10,16 @@ public abstract class GameObject {
 	protected float x,y,velX,velY,width,height;
 	protected boolean falling,jumping,passable;
 	protected BufferedImage image;
+	protected GameObjectHandler handler;
 	
-	public GameObject(BufferedImageLoader imageLoader,ObjectType type) {
-		
-		image = imageLoader.loadImage(type.imagePath);
+	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler) {
+		this.x=x;
+		this.y=x;
+		//image = imageLoader.loadImage(type.imagePath);
 		this.passable=type.passable;
+		this.handler=handler;
+		this.width=type.width;
+		this.height=type.height;
 	}
 	
 	public abstract void render(Graphics g);

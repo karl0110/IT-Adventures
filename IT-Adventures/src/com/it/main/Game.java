@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -23,13 +24,16 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;//Variable zum Speichern des Threads.
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
+	private BufferedImage background=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	
 	private Menu menu;//Speichert das Menu Objekt
 	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
+	private GameObjectHandler handler;//Speichert den Handler welcher die GameObjects in einer Liste speichert.
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
-		MainMenu,PlayMenu
+		MainMenu,PlayMenu,Game
 	};
-	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
+	public static STATE State=STATE.Game;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
 	/*
 	 * This Method is run when the Thread is started. It contains the initilization of things needed for the Game and the Main Game Loop.
@@ -77,6 +81,10 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(new KeyInput());
 		menu=new Menu(imageLoader,this,sound);
 		this.addMouseListener(new MouseInput(menu));
+		handler=new GameObjectHandler();
+		for(int i = 0;i<30;i++){
+			handler.addObject(new Block(i*32, 900, handler, imageLoader, ObjectType.Dirt));
+		}
 		
 		//sound.playSound("/sound/jäger.wav");
 		
@@ -90,6 +98,9 @@ public class Game extends Canvas implements Runnable{
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
 			menu.tick();
+		}
+		else if(Game.State==Game.STATE.Game){
+			handler.tick();
 		}
 	}
 	
@@ -108,6 +119,10 @@ public class Game extends Canvas implements Runnable{
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
 			menu.render(g);
+		}
+		else if(Game.State==Game.STATE.Game){
+			g.drawImage(background,0,0,null);
+			handler.render(g);
 		}
 		
 		
