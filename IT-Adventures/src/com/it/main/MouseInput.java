@@ -33,9 +33,13 @@ public class MouseInput implements MouseListener {
 			}
 		}
 		else if(Game.State==Game.STATE.PlayMenu){
+			Rectangle newGame =new Rectangle(0,Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			Rectangle backButton = new Rectangle(0,Game.HEIGHT/2+Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			if(backButton.intersects(mouse)){
 				Game.State=Game.STATE.MainMenu;
+			}
+			if(newGame.intersects(mouse)){
+				Game.State=Game.STATE.Game;
 			}
 		}
 		

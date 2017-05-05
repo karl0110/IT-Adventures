@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable{
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
 	};
-	public static STATE State=STATE.Game;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
+	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
 	/*
 	 * This Method is run when the Thread is started. It contains the initilization of things needed for the Game and the Main Game Loop.
