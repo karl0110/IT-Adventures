@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -29,6 +28,7 @@ public class Game extends Canvas implements Runnable{
 	private Menu menu;//Speichert das Menu Objekt
 	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
 	private GameObjectHandler handler;//Speichert den Handler welcher die GameObjects in einer Liste speichert.
+	private Sound sound;//Speichert das Sound objekt, welches Sound-Dateien abspielen kann.
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
@@ -36,54 +36,54 @@ public class Game extends Canvas implements Runnable{
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
 	/*
-	 * This Method is run when the Thread is started. It contains the initilization of things needed for the Game and the Main Game Loop.
+	 * Diese Methode wird beim starten des Threads aufgerufen. Sie beeinhaltet die Initilaisierung und die Haup Spiel-Schleife.
 	 * 
 	 */
 	public void run() {
 		init();
-		long lastTime = System.nanoTime();//Saves the current Time in a long Variable to count time.
-		final double amountOfTicks = 60.0;//The Amount of times the Method tick() is run in 1 second.
-		double ns = 1000000000 / amountOfTicks;//Calculates the time that passes before the tick() Method is run again.
-		double delta = 0;//
-		int updates = 0;
-		int frames = 0;
-		long timer = System.currentTimeMillis();
+		long lastTime = System.nanoTime();//Speichert die aktuelle Zeit in einer long Variable, um als Timer zu agieren.
+		final double amountOfTicks = 60.0;//Wie oft die Methode tick() in einer Sekunde aufgerufen werden soll.
+		double ns = 1000000000 / amountOfTicks;//Berechnet wie viel Zeit vergeht bis die Methode tick() aufgerufen wird.
+		double delta = 0;//Variable welche Berechnet, wann die tick() Methode aufgerufen werden soll.
+		int updates = 0;//Wie oft das Progam die tick() Methode in einer Sekunde aufrufen hat.
+		int frames = 0;//Wie oft das Program die Methode render() in einer Sekunde aufgerufen hat.
+		long timer = System.currentTimeMillis();//Eine Variable um die Zeit zu Zählen. Ist für die Berechnung der "TicksPerSecond" und "FramesPerSecond" notwendig.
 
-		while (running) {
-			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
-			lastTime = now;
-			if (delta >= 1) {
-				tick();
-				updates++;
-				delta--;
+		while (running) {//Solange das Spiel läuft.
+			long now = System.nanoTime();//Timer Variable für die aktuelle Zeit.
+			delta += (now - lastTime) / ns;//Berechnet mithilfe der Timer und ns Variablen, wann die tick() Methode aufgerufen werden soll.
+			lastTime = now;//Stellt den Timer wieder zurück.
+			if (delta >= 1) {//Guckt ob die Methode tick() jetzt aufgerufen werden soll.
+				tick();//ruft die Methode tick() auf.
+				updates++;//Addiert zum Update-Zähler 1 dazu.
+				delta--;//Setzt den tick() Aufruf-Timer zurück.
 			}
-			render();
-			frames++;
+			render();//ruft die render() Methode auf.
+			frames++;////Addiert zum Frame-Zähler 1 dazu.
 
-			if (System.currentTimeMillis() - timer > 1000) {
-				timer += 1000;
-				System.out.println("Ticks: " + updates + " FPS: " + frames);
-				updates = 0;
-				frames = 0;
+			if (System.currentTimeMillis() - timer > 1000) {//Wenn eine Sekunde vergangen ist.
+				timer += 1000;//addiert zum Timer eine Sekunde dazu.
+				System.out.println("Ticks: " + updates + " FPS: " + frames);//Druckt die "TicksPerSecond" und "FramesPerSecond" aus.
+				updates = 0;//setzt den Tick-Zähler zurück.
+				frames = 0;//setzt den Frame-Zähler zurück.
 			}
 		    
 		    
 		    
 		}
-		stop();
+		stop();//Wenn das Spiel beendet werden soll, wird die Methode stop() aufgerufen.
 		
 	}
 	
-	private void init(){
-		Sound sound = new Sound();
-		imageLoader=new BufferedImageLoader();
-		this.addKeyListener(new KeyInput());
-		menu=new Menu(imageLoader,this,sound);
-		this.addMouseListener(new MouseInput(menu));
-		handler=new GameObjectHandler();
-		for(int i = 0;i<60;i++){
-			handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));
+	private void init(){//Methode für Initialisierung von diversen Objekten.
+		sound = new Sound();//Erstellt ein Objekt der Sound Klasse und speichert es.
+		imageLoader=new BufferedImageLoader();//Erstellt ein Objekt der BufferedImageLoader Klasse und speichert es.
+		this.addKeyListener(new KeyInput());//Ruft die Methode addKeyListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der KeyInput Klasse. 
+		menu=new Menu(imageLoader,this,sound);//Erstellt ein neues Objekt der Klasse Menu und speichert es.
+		this.addMouseListener(new MouseInput(menu));//Ruft die Methode addMouseListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der MouseInput Klasse. 
+		handler=new GameObjectHandler();//Erstellt ein neues Objekt der Klasse GameObjectHandler und speichert es.
+		for(int i = 0;i<60;i++){//For-Schleife zum erstellen einer rudimentären Plattform.
+			handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));//Erstellt ein neues Object der Klasse Block und fügt es dem GameObjektHandler zu, welcher es speichert und seine Methode tick() aufruft.
 		}
 		
 		//sound.playSound("/sound/jäger.wav");
@@ -91,53 +91,54 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 	
-	public void tick(){
+	public void tick(){//Methode welche in diversen Objekten die Methode tick() aufruft.
 		if(Game.State==Game.STATE.MainMenu){
-			menu.tick();
+			menu.tick();//Wenn der Zustand des Spieles das Hauptmenü ist, wird die Methode tick() im Menü aufgerufen.
 		}
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
-			menu.tick();
+			menu.tick();//Wenn der Zustand des Spieles das Spielmenü ist, wird die Methode tick() im Menü aufgerufen.
 		}
 		else if(Game.State==Game.STATE.Game){
-			handler.tick();
+			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, wird die Methode tick() im GameObjektHandler aufgerufen, welcher in allen SpielObjekten die tick() Methode aufruft.
 		}
 	}
 	
-	public void render(){
-		BufferStrategy bs = this.getBufferStrategy();
-		if(bs==null){
-			createBufferStrategy(3);
+	public void render(){//Methode zum malen von diversen Grafiken.
+		BufferStrategy bs = this.getBufferStrategy();//Ruft die Methode getBufferStrategy() in der Superklasse Canvas auf und speichert den returnten Wert in einer Variable.
+		if(bs==null){//Falls die BufferStrategy noch nicht erstellt wurde,
+			createBufferStrategy(3);//wird eine neue erstellt. Die drei im Parameter steht dafür, dass 2 Bilder im Voraus geladen werden (Buffer (eng.) = Puffer).
 			return;
 		}
 		
-		Graphics g = bs.getDrawGraphics();
-		////////////////
+		Graphics g = bs.getDrawGraphics();//Von dem BufferStrategy Objekt wird dann ein Graphics Objekt geholt, welches zum eigentlichen malen der Grafiken gebraucht wird.
+		////////////////Bereich zum zeichnen von diversen Grafiken
+		
 		if(Game.State==Game.STATE.MainMenu){
-			menu.render(g);
+			menu.render(g);//Wenn der Zustand des Spieles das Hauptmenü ist, wird die Methode render() im Menü aufgerufen.
 		}
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
-			menu.render(g);
+			menu.render(g);//Wenn der Zustand des Spieles das Spielmenü ist, wird die Methode render() im Menü aufgerufen.
 		}
-		else if(Game.State==Game.STATE.Game){
-			g.setColor(Color.WHITE);
-			g.fillRect(0, 0,WIDTH,HEIGHT);
-			handler.render(g);
+		else if(Game.State==Game.STATE.Game){//Wenn der Zustand des Spieles das Spiel selber ist,
+			g.setColor(Color.WHITE);//wird die Farbe für das Graphics Objekt auf weiß gesetzt.
+			g.fillRect(0, 0,WIDTH,HEIGHT);//wird ein gefülltes Rechteck mit der vorher Ausgewählten Farbe gemalt, welches den Hintergrund darstellt.
+			handler.render(g);// wird die Methode render() im GameObjektHandler aufgerufen, welcher in allen SpielObjekten die render() Methode aufruft.
 		}
 		
 		
-		/////////////////
+		///////////////////Ende des Bereiches.
 		
-		g.dispose();
+		g.dispose();//Graphics Objekt wird gelöscht, ist nicht gebraucht.
 		
-		bs.show();
+		bs.show();//Die BufferStrategy, welche mit Hilfe des Graphics Objekts beschmückt wurde, wird angezeigt.
 		
 		
 		
 	}
 
-	public static void main(String args[]){
+	public static void main(String args[]){//Methode wird automatisch beim Start des Programs aufgerufen.
 		Game game = new Game();//erstellt eine neue Intanz der Game Klasse.
 		JFrame frame = new JFrame();//ein neuer JFrame wird erstellt.
 		
@@ -176,7 +177,7 @@ public class Game extends Canvas implements Runnable{
 			thread.join();//Der Thread wird beendet.
 		} catch (InterruptedException e) {
 
-			e.printStackTrace();
+			e.printStackTrace();//Problembehandlung wird gedruckt.
 		}
 		System.exit(1);//Das Programm wird beendet
 	}
