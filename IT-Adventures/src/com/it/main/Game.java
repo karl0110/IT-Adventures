@@ -82,7 +82,7 @@ public class Game extends Canvas implements Runnable{
 		menu=new Menu(imageLoader,this,sound);
 		this.addMouseListener(new MouseInput(menu));
 		handler=new GameObjectHandler();
-		for(int i = 0;i<30;i++){
+		for(int i = 0;i<60;i++){
 			handler.addObject(new Block(i*32, 900, handler, imageLoader, ObjectType.Dirt));
 		}
 		

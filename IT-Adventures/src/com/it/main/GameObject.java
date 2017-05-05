@@ -14,7 +14,7 @@ public abstract class GameObject {
 	
 	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler) {
 		this.x=x;
-		this.y=x;
+		this.y=y;
 		//image = imageLoader.loadImage(type.imagePath);
 		this.passable=type.passable;
 		this.handler=handler;
