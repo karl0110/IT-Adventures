@@ -1,7 +1,7 @@
 package com.it.main;
 
 public enum ObjectType {
-	Dirt("/images/dirt.png",false,false,32,32),
+	Dirt("/images/Erde_mit_gras.png",false,false,64,64),
 	Grass("/images/grass.png",false,true,32,32);
 	
 	

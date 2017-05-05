@@ -1,6 +1,7 @@
 package com.it.main;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -24,7 +25,6 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;//Variable zum Speichern des Threads.
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
-	private BufferedImage background=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	
 	private Menu menu;//Speichert das Menu Objekt
 	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
@@ -83,7 +83,7 @@ public class Game extends Canvas implements Runnable{
 		this.addMouseListener(new MouseInput(menu));
 		handler=new GameObjectHandler();
 		for(int i = 0;i<60;i++){
-			handler.addObject(new Block(i*32, 900, handler, imageLoader, ObjectType.Dirt));
+			handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));
 		}
 		
 		//sound.playSound("/sound/jäger.wav");
@@ -121,7 +121,8 @@ public class Game extends Canvas implements Runnable{
 			menu.render(g);
 		}
 		else if(Game.State==Game.STATE.Game){
-			g.drawImage(background,0,0,null);
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0,WIDTH,HEIGHT);
 			handler.render(g);
 		}
 		

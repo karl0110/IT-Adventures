@@ -13,9 +13,10 @@ public class Block extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE);
+		//g.setColor(Color.BLUE);
 		
-		g.fillRect((int)x, (int)y, (int)width, (int)height);
+		//g.fillRect((int)x, (int)y, (int)width, (int)height);
+		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
 	}
 
 	@Override
