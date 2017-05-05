@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
 	private Menu menu;//Speichert das Menu Objekt
-	private BufferedImageLoader imageLoader;//Specihert BufferedImageLoader Objekt.
+	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu
