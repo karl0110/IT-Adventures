@@ -87,7 +87,7 @@ public class Game extends Canvas implements Runnable{
 		for(int i = 0;i<60;i++){//For-Schleife zum erstellen einer rudimentären Plattform.
 			handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));//Erstellt ein neues Object der Klasse Block und fügt es dem GameObjektHandler zu, welcher es speichert und seine Methode tick() aufruft.
 		}
-		handler.addObject(new Player(100, 0, imageLoader, ObjectType.Player, handler)); //erstellt einen neuen Player
+		handler.addObject(new Player(100, 0, imageLoader, handler, ObjectType.Player)); //erstellt einen neuen Player
 		
 		//sound.playSound("/sound/jäger.wav");
 		
