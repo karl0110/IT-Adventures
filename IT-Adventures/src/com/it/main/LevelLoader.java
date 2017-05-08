@@ -14,7 +14,7 @@ public class LevelLoader {
 	
 	public void loadLevel(String characterName,int level){
 		handler.removeAllObjects();
-		BufferedImage levelImage = imageLoader.loadImage("/images/levels/"+characterName+"/"+level);
+		BufferedImage levelImage = imageLoader.loadImage("/images/"+level+".png");
 		for(int xx=0;xx<levelImage.getWidth();xx++){
 			for(int yy=0;yy<levelImage.getHeight();yy++){
 				int pixel = levelImage.getRGB(xx, yy);
@@ -22,7 +22,7 @@ public class LevelLoader {
 				int green = (pixel>>8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*64, yy*64, handler, imageLoader, ObjectType.Grass));
+				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*64, yy*64, handler, imageLoader, ObjectType.Dirt));
 				if(red==255 && green==0 && blue==0)handler.addObject(new Player(xx*64,yy*64,imageLoader,handler,ObjectType.Player));
 			}
 		}

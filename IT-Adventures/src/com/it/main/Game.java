@@ -84,11 +84,12 @@ public class Game extends Canvas implements Runnable{
 		menu=new Menu(imageLoader,this,sound);//Erstellt ein neues Objekt der Klasse Menu und speichert es.
 		this.addMouseListener(new MouseInput(menu));//Ruft die Methode addMouseListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der MouseInput Klasse. 
 		handler=new GameObjectHandler();//Erstellt ein neues Objekt der Klasse GameObjectHandler und speichert es.
-		for(int i = 0;i<60;i++){//For-Schleife zum erstellen einer rudimentären Plattform.
-			handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));//Erstellt ein neues Object der Klasse Block und fügt es dem GameObjektHandler zu, welcher es speichert und seine Methode tick() aufruft.
-		}
-		handler.addObject(new Player(100, 0, imageLoader, handler, ObjectType.Player)); //erstellt einen neuen Player
-		
+		//for(int i = 0;i<60;i++){//For-Schleife zum erstellen einer rudimentären Plattform.
+			//handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));//Erstellt ein neues Object der Klasse Block und fügt es dem GameObjektHandler zu, welcher es speichert und seine Methode tick() aufruft.
+		//}
+		//handler.addObject(new Player(100, 0, imageLoader, handler, ObjectType.Player)); //erstellt einen neuen Player
+		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);
+		levelLoader.loadLevel("jaime", 1);
 		//sound.playSound("/sound/jäger.wav");
 		
 		
