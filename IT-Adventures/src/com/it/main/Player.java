@@ -24,7 +24,7 @@ public class Player extends GameObject {
 		
 		if(falling || jumping){
 			
-			velY += 0.05f;
+			//velY += 0.05f;
 			//joa also dann öööhm fällt er halt
 		}
 		
