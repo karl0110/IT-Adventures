@@ -22,11 +22,12 @@ public abstract class GameObject {
 	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler) {
 		this.x=x;
 		this.y=y;
-		image = imageLoader.loadImage(type.imagePath);
+		
 		this.passable=type.passable;
 		this.handler=handler;
 		this.width=type.width;
 		this.height=type.height;
+		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		this.type = type;
 	}
 	

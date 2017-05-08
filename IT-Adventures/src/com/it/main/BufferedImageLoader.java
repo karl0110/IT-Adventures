@@ -18,6 +18,14 @@ public class BufferedImageLoader {
 		return img;
 	}
 	
+	public BufferedImage loadImageFromSS(String ssPath,int ssCol,int ssRow,int width,int height){
+		BufferedImage img=null;
+		
+		img=loadImage(ssPath).getSubimage((ssCol*width)-width, (ssRow*height)-height, width, height);
+		
+		return img;
+	}
+	
 	public BufferedImage[] getImageSet(BufferedImage ss,int numberOfImg,int width,int height){
 		BufferedImage[] imageArray=new BufferedImage[numberOfImg];
 		
