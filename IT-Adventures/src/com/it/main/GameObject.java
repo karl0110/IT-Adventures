@@ -136,26 +136,4 @@ public abstract class GameObject {
 	public abstract Rectangle getLeftBounds();
 	public abstract Rectangle getRightBounds();
 	
-	protected boolean collisionRight(){
-		boolean collision=false;
-		
-		return collision;
-	}
-	protected boolean collisionLeft(){
-		boolean collision=false;
-		
-		return collision;
-	}
-	protected boolean collisionBottom(){
-		boolean collision=false;
-		
-		return collision;
-	}
-	protected boolean collisionUp(){
-		boolean collision=false;
-		
-		return collision;
-	}
-	
-	
 }
