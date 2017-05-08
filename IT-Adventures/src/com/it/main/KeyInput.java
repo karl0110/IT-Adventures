@@ -22,30 +22,33 @@ public class KeyInput extends KeyAdapter{
 			System.exit(0);
 		
 		}
-		if(key==KeyEvent.VK_LEFT && Game.State==Game.STATE.Game) {
-			for(int i=0;i<=handler.object.size();i++)
-			{
-				if(handler.object.get(i).getType()==ObjectType.Player)
-				{
-					handler.object.get(i).setVelX(5);
-				}
+		for(int i=0;i<handler.object.size();i++){
+			GameObject tempObject=handler.object.get(i);
+			
+			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
+			
+				if(key==KeyEvent.VK_LEFT)tempObject.setVelX(-5);
+			
+				if(key==KeyEvent.VK_RIGHT)tempObject.setVelX(5);
 			}
-		}
-		if(key==KeyEvent.VK_RIGHT && Game.State==Game.STATE.Game) {
-			for(int i=0;i<=handler.object.size();i++)
-			{
-				if(handler.object.get(i).getType()==ObjectType.Player)
-				{
-					handler.object.get(i).setVelX(-5);
-				}
-			}
+			
 		}
 
 		
 	}
 	
 	public void keyReleased(KeyEvent e){
-		
+		int key=e.getKeyCode();
+		for(int i=0;i<handler.object.size();i++){
+			GameObject tempObject=handler.object.get(i);
+			
+			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
+				
+				if(key==KeyEvent.VK_LEFT)tempObject.setVelX(0);
+			
+				if(key==KeyEvent.VK_RIGHT)tempObject.setVelX(0);
+			}
+		}
 	}
 	
 }
