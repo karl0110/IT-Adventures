@@ -7,6 +7,7 @@ public class Player extends GameObject {
 
 	public Player(float x, float y, BufferedImageLoader imageLoader, ObjectType type, GameObjectHandler handler) {
 		super(x, y, imageLoader, type, handler);
+		falling=true;
 	}
 
 	public void render(Graphics g) {
@@ -19,7 +20,14 @@ public class Player extends GameObject {
 
 	public void tick() {
 		x += velX;
-
+		y += velY;
+		
+		if(falling || jumping){
+			
+			velY += 0.05f;
+			//joa also dann öööhm fällt er halt
+		}
+		
 	}
 
 	public Rectangle getUpperBounds() {
