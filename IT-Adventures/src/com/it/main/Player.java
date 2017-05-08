@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public class Player extends GameObject {
 
-	public Player(float x, float y, BufferedImageLoader imageLoader, ObjectType type, GameObjectHandler handler) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type) {
 		super(x, y, imageLoader, type, handler);
 	}
 
