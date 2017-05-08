@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class GameObjectHandler {
 
-	LinkedList<GameObject> object = new LinkedList<GameObject>();
+	public LinkedList<GameObject> object = new LinkedList<GameObject>();
 	
 	public void tick(){
 		for (int i = 0; i < object.size(); i++) {
@@ -34,4 +34,9 @@ public class GameObjectHandler {
 		this.object.remove(object);
 	}
 	
+	public void removeAllObjects(){
+		for(int i=0;i<object.size();i++){
+			removeObject(object.get(i));
+		}
+	}
 }
