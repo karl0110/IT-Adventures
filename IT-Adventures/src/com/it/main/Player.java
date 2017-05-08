@@ -1,0 +1,42 @@
+package com.it.main;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public class Player extends GameObject {
+
+	public Player(float x, float y, BufferedImageLoader imageLoader, ObjectType type, GameObjectHandler handler) {
+		super(x, y, imageLoader, type, handler);
+	}
+
+	public void render(Graphics g) {
+		//g.setColor(Color.BLUE);
+		
+		//g.fillRect((int)x, (int)y, (int)width, (int)height);
+		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
+
+	}
+
+	public void tick() {
+		x += velX;
+
+	}
+
+	public Rectangle getUpperBounds() {
+		return null;
+	}
+
+	public Rectangle getBottomBounds() {
+		return null;
+	}
+
+	public Rectangle getLeftBounds() {
+		return null;
+	}
+
+
+	public Rectangle getRightBounds() {
+		return null;
+	}
+
+}

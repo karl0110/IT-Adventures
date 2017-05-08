@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable{
 	private void init(){//Methode für Initialisierung von diversen Objekten.
 		sound = new Sound();//Erstellt ein Objekt der Sound Klasse und speichert es.
 		imageLoader=new BufferedImageLoader();//Erstellt ein Objekt der BufferedImageLoader Klasse und speichert es.
-		this.addKeyListener(new KeyInput());//Ruft die Methode addKeyListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der KeyInput Klasse. 
+		this.addKeyListener(new KeyInput(handler));//Ruft die Methode addKeyListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der KeyInput Klasse. 
 		menu=new Menu(imageLoader,this,sound);//Erstellt ein neues Objekt der Klasse Menu und speichert es.
 		this.addMouseListener(new MouseInput(menu));//Ruft die Methode addMouseListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der MouseInput Klasse. 
 		handler=new GameObjectHandler();//Erstellt ein neues Objekt der Klasse GameObjectHandler und speichert es.

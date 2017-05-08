@@ -1,8 +1,10 @@
 package com.it.main;
 
 public enum ObjectType {
+	Player("/images/jimmieHero.png",true,false,64,128),
 	Dirt("/images/Erde_mit_gras.png",false,false,64,64),
 	Grass("/images/grass.png",false,true,32,32);
+	
 	
 	
 	String imagePath;
