@@ -16,6 +16,7 @@ public class Block extends GameObject{
 		//g.setColor(Color.BLUE);
 		
 		//g.fillRect((int)x, (int)y, (int)width, (int)height);
+		if(x>500&&x<1500&&y<800&&y>200)
 		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
 	}
 

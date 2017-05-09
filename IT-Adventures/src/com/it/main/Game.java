@@ -20,18 +20,14 @@ public class Game extends Canvas implements Runnable{
 	public static final int WIDTH=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;//Klassenkonstante für die Breite des Fensters, wird automatisch auf die maximale Breite des jeweiligen Bildschirms gesetzt.
 	public static final int HEIGHT=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;//Klassenkonstante für die Höhe des Fensters, wird automatisch auf die maximale Höhe des jeweiligen Bildschirms gesetzt.
 	
-	
 	private static final long serialVersionUID = 1L;
-	
-	private Thread thread;//Variable zum Speichern des Threads.
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
-	
-	private Menu menu;//Speichert das Menu Objekt
-	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
-	private GameObjectHandler handler;//Speichert den Handler welcher die GameObjects in einer Liste speichert.
-	private Sound sound;//Speichert das Sound objekt, welches Sound-Dateien abspielen kann.
-	
+	private Thread thread;
+	private Menu menu;
+	private BufferedImageLoader imageLoader;
+	private GameObjectHandler handler;
+	private Sound sound;
 	private BufferedImage background;
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
@@ -45,7 +41,7 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public void run() {
 		init();
-		long lastTime = System.nanoTime();//Speichert die aktuelle Zeit in einer long Variable, um als Timer zu agieren.
+		long lastTime = System.nanoTime();//Wird für einen Timer benötigt.
 		final double amountOfTicks = 60.0;//Wie oft die Methode tick() in einer Sekunde aufgerufen werden soll.
 		double ns = 1000000000 / amountOfTicks;//Berechnet wie viel Zeit vergeht bis die Methode tick() aufgerufen wird.
 		double delta = 0;//Variable welche Berechnet, wann die tick() Methode aufgerufen werden soll.
@@ -79,44 +75,46 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 	
-	private void init(){//Methode für Initialisierung von diversen Objekten.
-		sound = new Sound();//Erstellt ein Objekt der Sound Klasse und speichert es.
-		imageLoader=new BufferedImageLoader();//Erstellt ein Objekt der BufferedImageLoader Klasse und speichert es.
-		handler=new GameObjectHandler();//Erstellt ein neues Objekt der Klasse GameObjectHandler und speichert es.
-		this.addKeyListener(new KeyInput(handler));//Ruft die Methode addKeyListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der KeyInput Klasse. 
-		menu=new Menu(imageLoader,this,sound);//Erstellt ein neues Objekt der Klasse Menu und speichert es.
-		this.addMouseListener(new MouseInput(menu));//Ruft die Methode addMouseListener() aus der Superklasse Canvas aus und übergibt als Parameter eine neues Objekt der MouseInput Klasse. 
-		
-		//for(int i = 0;i<60;i++){//For-Schleife zum erstellen einer rudimentären Plattform.
-			//handler.addObject(new Block(i*64, 900, handler, imageLoader, ObjectType.Dirt));//Erstellt ein neues Object der Klasse Block und fügt es dem GameObjektHandler zu, welcher es speichert und seine Methode tick() aufruft.
-		//}
-		//handler.addObject(new Player(100, 0, imageLoader, handler, ObjectType.Player)); //erstellt einen neuen Player
-		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);
-		levelLoader.loadLevel("jaime", 1);
-		//sound.playSound("/sound/jäger.wav");
-		
-		background=imageLoader.loadImage("/images/castle.png");
+	/*
+	 * Diese Methode Initialisiert diverse Objekte, welche für das Programm notwendig sind.
+	 */
+	private void init(){
+		sound = new Sound();//Sound Klasse ist für Wiedergabe von diversen Geräuschen da.
+		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
+		handler=new GameObjectHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
+		this.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		menu=new Menu(imageLoader,this,sound);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
+		this.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
+		levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
+		background=imageLoader.loadImage("/images/castle.png");//Temporär
 		
 		
 	}
 	
-	public void tick(){//Methode welche in diversen Objekten die Methode tick() aufruft.
+	/*
+	 * Methode welche alle Spielobjekte aktualisiert(z.B. Schwerkraft des Spielers)
+	 */
+	public void tick(){
 		if(Game.State==Game.STATE.MainMenu){
-			menu.tick();//Wenn der Zustand des Spieles das Hauptmenü ist, wird die Methode tick() im Menü aufgerufen.
+			menu.tick();//Wenn der Zustand des Spieles das Hauptmenü ist, wird das Menü aktualisiert.
 		}
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
-			menu.tick();//Wenn der Zustand des Spieles das Spielmenü ist, wird die Methode tick() im Menü aufgerufen.
+			menu.tick();//Wenn der Zustand des Spieles das Spielmenü ist, wird das Menü aktualisiert.
 		}
 		else if(Game.State==Game.STATE.Game){
-			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, wird die Methode tick() im GameObjektHandler aufgerufen, welcher in allen SpielObjekten die tick() Methode aufruft.
+			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, werden alle Spielobjekte über den GameObjectHandler aktualisiert.
 		}
 	}
 	
-	public void render(){//Methode zum malen von diversen Grafiken.
-		BufferStrategy bs = this.getBufferStrategy();//Ruft die Methode getBufferStrategy() in der Superklasse Canvas auf und speichert den returnten Wert in einer Variable.
-		if(bs==null){//Falls die BufferStrategy noch nicht erstellt wurde,
-			createBufferStrategy(3);//wird eine neue erstellt. Die drei im Parameter steht dafür, dass 2 Bilder im Voraus geladen werden (Buffer (eng.) = Puffer).
+	/*
+	 * //Methode zum malen von diversen Grafiken.
+	 */
+	public void render(){
+		BufferStrategy bs = this.getBufferStrategy();//Es wird eine Strategie geladen, welche es dem Programm ermöglicht Grafiken im Voraus vorzumalen, um effizienter mit den Resourcen des Computers umzugehen.
+		if(bs==null){
+			createBufferStrategy(3);//Falls noch keine Strategie vorhanden ist, wird eine neue erstellt. Die 3 im Parameter bedeutet, dass zwei bilder im voraus gemalt werden.
 			return;
 		}
 		
@@ -124,17 +122,16 @@ public class Game extends Canvas implements Runnable{
 		////////////////Bereich zum zeichnen von diversen Grafiken
 		
 		if(Game.State==Game.STATE.MainMenu){
-			menu.render(g);//Wenn der Zustand des Spieles das Hauptmenü ist, wird die Methode render() im Menü aufgerufen.
+			menu.render(g);//Wenn der Zustand des Spieles das Hauptmenü ist, werden die Grafiken des Menüs geladen.
 		}
 		else if(Game.State==Game.STATE.PlayMenu)
 		{
-			menu.render(g);//Wenn der Zustand des Spieles das Spielmenü ist, wird die Methode render() im Menü aufgerufen.
+			menu.render(g);//Wenn der Zustand des Spieles das Spielmenü ist, werden die Grafiken des Menüs geladen.
 		}
-		else if(Game.State==Game.STATE.Game){//Wenn der Zustand des Spieles das Spiel selber ist,
-			//g.setColor(Color.WHITE);//wird die Farbe für das Graphics Objekt auf weiß gesetzt.
-			//g.fillRect(0, 0,WIDTH,HEIGHT);//wird ein gefülltes Rechteck mit der vorher Ausgewählten Farbe gemalt, welches den Hintergrund darstellt.
+		else if(Game.State==Game.STATE.Game){
+			
 			g.drawImage(background, 0, 0,1920,1080, null);
-			handler.render(g);// wird die Methode render() im GameObjektHandler aufgerufen, welcher in allen SpielObjekten die render() Methode aufruft.
+			handler.render(g);////Wenn der Zustand des Spieles das Spiel selber ist, werden die Grafiken von allen Spielobjekten über den GameObjectHandler geladen.
 		}
 		
 		
@@ -148,13 +145,13 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 
-	public static void main(String args[]){//Methode wird automatisch beim Start des Programs aufgerufen.
-		Game game = new Game();//erstellt eine neue Intanz der Game Klasse.
-		JFrame frame = new JFrame();//ein neuer JFrame wird erstellt.
+	public static void main(String args[]){
+		Game game = new Game();
+		JFrame frame = new JFrame();//Das Fenster in dem alles angezeigt wird.
 		
-		game.setMinimumSize(new Dimension(WIDTH,HEIGHT));//setzt die Mindestgröße des Spielfensters.
-		game.setPreferredSize(new Dimension(WIDTH,HEIGHT));//setzt die bevorzugte Größe des Spielfensters.
-		game.setMaximumSize(new Dimension(WIDTH,HEIGHT));//setzt die maximale Größe des Spielfensters.
+		game.setMinimumSize(new Dimension(WIDTH,HEIGHT));
+		game.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		game.setMaximumSize(new Dimension(WIDTH,HEIGHT));
 		
 		frame.add(game);//Das Spiel wird dem JFrame hinzugefügt um Fensterpreferenzen zu übernehmen.
 		
@@ -162,33 +159,32 @@ public class Game extends Canvas implements Runnable{
 		frame.setUndecorated(true);//Entfernt die Menüleiste oben am Bildschirm (Vollbild)
 		frame.pack();
 		frame.setResizable(false);//Fenster kann nicht vergrößert oder verkleinert werden, für korrekt Skalierung notwendig.
-		frame.setLocationRelativeTo(null);//Bewegt Fesnter in die Mitte des Bildschirms.
+		frame.setLocationRelativeTo(null);//Bewegt Fenster in die Mitte des Bildschirms.
 		frame.setVisible(true);//Macht das Fenster sichtbar.
-		// Tyrus ist der Boss
 		game.start();//Ruft die Methode start() zum initialisieren des Threads auf.
 		
 	}
 	
-	
-	private synchronized void start(){
-		if (running)//Falls das Spiel bereits läuft, muss es nicht nochmal gestartet werden.
-			return;
-
-		running = true;//Das Spiel startet jetzt.
-		thread = new Thread(this);//Ein neuer Thread wird erstellt.
+	/*
+	 * Startet das Spiel.
+	 */
+	private synchronized void start(){//Startet das Programm über einen Thread, welcher alle Berechnungen und Grafiken lädt.
+		running = true;
+		thread = new Thread(this);
 		thread.start();//Der erstellte Thread wird gestartet.(Die Methode run() wird ausgeführt.
 	}
 	
-	public synchronized void stop() {
-		if (!running)//Falls das Spiel bereits gestoppt wurde, muss es dies nicht nochmal tuen.
-			return;
-		running = false;//Das Spiel wird als gestoppt angezeigt.
+	/*
+	 * Beendet das Spiel.
+	 */
+	public synchronized void stop() {//Stoppt das Programm und den Thread.
+		running = false;
 		try {
 			thread.join();//Der Thread wird beendet.
 		} catch (InterruptedException e) {
 
-			e.printStackTrace();//Problembehandlung wird gedruckt.
+			e.printStackTrace();
 		}
-		System.exit(1);//Das Programm wird beendet
+		System.exit(1);
 	}
 }
