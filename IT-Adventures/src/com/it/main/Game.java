@@ -1,10 +1,10 @@
 package com.it.main;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -31,6 +31,8 @@ public class Game extends Canvas implements Runnable{
 	private BufferedImageLoader imageLoader;//Speichert BufferedImageLoader Objekt.
 	private GameObjectHandler handler;//Speichert den Handler welcher die GameObjects in einer Liste speichert.
 	private Sound sound;//Speichert das Sound objekt, welches Sound-Dateien abspielen kann.
+	
+	private BufferedImage background;
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
@@ -93,6 +95,8 @@ public class Game extends Canvas implements Runnable{
 		levelLoader.loadLevel("jaime", 1);
 		//sound.playSound("/sound/jäger.wav");
 		
+		background=imageLoader.loadImage("/images/castle.png");
+		
 		
 	}
 	
@@ -127,8 +131,9 @@ public class Game extends Canvas implements Runnable{
 			menu.render(g);//Wenn der Zustand des Spieles das Spielmenü ist, wird die Methode render() im Menü aufgerufen.
 		}
 		else if(Game.State==Game.STATE.Game){//Wenn der Zustand des Spieles das Spiel selber ist,
-			g.setColor(Color.WHITE);//wird die Farbe für das Graphics Objekt auf weiß gesetzt.
-			g.fillRect(0, 0,WIDTH,HEIGHT);//wird ein gefülltes Rechteck mit der vorher Ausgewählten Farbe gemalt, welches den Hintergrund darstellt.
+			//g.setColor(Color.WHITE);//wird die Farbe für das Graphics Objekt auf weiß gesetzt.
+			//g.fillRect(0, 0,WIDTH,HEIGHT);//wird ein gefülltes Rechteck mit der vorher Ausgewählten Farbe gemalt, welches den Hintergrund darstellt.
+			g.drawImage(background, 0, 0,1920,1080, null);
 			handler.render(g);// wird die Methode render() im GameObjektHandler aufgerufen, welcher in allen SpielObjekten die render() Methode aufruft.
 		}
 		
