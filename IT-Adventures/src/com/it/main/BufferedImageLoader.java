@@ -26,12 +26,13 @@ public class BufferedImageLoader {
 		return img;
 	}
 	
-	public BufferedImage[] getImageSet(BufferedImage ss,int numberOfImg,int width,int height){
+	public BufferedImage[] getImageSet(String ssPath,int numberOfImg,float width,float height,int ssCol){
 		BufferedImage[] imageArray=new BufferedImage[numberOfImg];
+		BufferedImage ss=loadImage(ssPath);
 		
 		
 		for(int i=0;i<numberOfImg;i++){
-			imageArray[i]=ss.getSubimage((i*width)-width, 0, width, height);
+			imageArray[i]=ss.getSubimage(((i+1)*(int)width)-(int)width, (ssCol*(int)height)-(int)height, (int)width, (int)height);
 		}
 		
 		return imageArray;

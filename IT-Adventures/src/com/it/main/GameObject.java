@@ -27,7 +27,6 @@ public abstract class GameObject {
 		this.handler=handler;
 		this.width=type.width;
 		this.height=type.height;
-		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		this.type = type;
 	}
 	

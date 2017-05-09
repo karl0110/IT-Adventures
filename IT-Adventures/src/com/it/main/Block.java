@@ -7,6 +7,7 @@ public class Block extends GameObject{
 
 	public Block(float x,float y,GameObjectHandler handler,BufferedImageLoader imageLoader, ObjectType type) {
 		super(x,y,imageLoader, type,handler);
+		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		
 	}
 

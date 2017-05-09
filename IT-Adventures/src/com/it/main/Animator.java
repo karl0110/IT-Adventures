@@ -6,37 +6,46 @@ import java.awt.image.BufferedImage;
 public class Animator {
 
 	private BufferedImage[] images;
-	private int speed;
+	private BufferedImage currentImage;
+	
+	private int tickSpeed;
 	private int frames;
-	private int index;
-	private boolean started;
-	private long lastTime;
+	
+	private int tickCount=0;
+	private int count=0;
+	
 
-	public Animator(BufferedImage[] images, int speed) {
+	public Animator(BufferedImage[] images, int tickSpeed) {
 		this.images=images;
-		this.speed = speed;
+		this.tickSpeed = tickSpeed;
 		frames = images.length;
-		index = 0;
+		
 
 	}
 
-	public boolean renderAnimation(Graphics g) {
-		boolean finished=false;
+	public void runAnimation(){
+		tickCount++;
+		if(tickCount > tickSpeed){
+			tickCount=0;
+			nextFrame();
+		}
+	}
+	
+	private void nextFrame(){
+		for(int i =0;i<frames;i++){
+			if(count==i){
+				currentImage=images[i];
+			}
+		}
+		count++;
 		
-			if (!started) {
-				lastTime = System.currentTimeMillis();
-			}
-			started = true;
-			if (lastTime - System.currentTimeMillis() > 1000 / speed) {
-				g.drawImage(images[index], 0, 0, null);
-				index++;
-				lastTime=System.currentTimeMillis();
-			}
-		
-			if(index>=frames){
-				finished=true;
-			}
-			return finished;
+		if(count>=frames){
+			count=0;
+		}
+	}
+	
+	public void renderAnimation(Graphics g,float x,float y,float width, float height) {
+		g.drawImage(currentImage, (int)x,(int) y,(int) width,(int)height,null);
 	}
 
 }

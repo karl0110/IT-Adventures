@@ -23,7 +23,7 @@ public class LevelLoader {
 				int blue = (pixel) & 0xff;
 				
 				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*32, yy*32, handler, imageLoader, ObjectType.Dirt));
-				else if(red==255 && green==0 && blue==0)handler.addObject(new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player));
+				else if(red==255 && green==0 && blue==0)handler.addObject(new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime));
 				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,handler,imageLoader,ObjectType.Grass));
 				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,handler,imageLoader,ObjectType.Stone));
 			}
