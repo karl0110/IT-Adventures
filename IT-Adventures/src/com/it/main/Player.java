@@ -3,6 +3,8 @@ package com.it.main;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+
+
 public class Player extends GameObject {
 
 	private Animator idleAnimator;
@@ -23,6 +25,9 @@ public class Player extends GameObject {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void tick() {
 		x += velX;
 		y += velY;
@@ -36,22 +41,26 @@ public class Player extends GameObject {
 		if(velX==0&&velY==0)idleAnimator.runAnimation();
 		
 	}
+	
+	public void collision(GameObjectHandler handler){
+		
+	}//fertisch machen
 
 	public Rectangle getUpperBounds() {
-		return null;
+		return new Rectangle((int) x +1, (int) y, (int) width -2, (int) height/2);
 	}
 
 	public Rectangle getBottomBounds() {
-		return null;
+		return new Rectangle((int) x+1, (int) y/2, (int) width -2, (int)height/2 );
 	}
 
 	public Rectangle getLeftBounds() {
-		return null;
+		return new Rectangle((int) x, (int) y, (int) 2, (int)height );
 	}
 
 
 	public Rectangle getRightBounds() {
-		return null;
-	}
+		return new Rectangle((int) x , (int) y/2, (int) width -2, (int)height/2 );
+	}//fertisch machen
 
 }

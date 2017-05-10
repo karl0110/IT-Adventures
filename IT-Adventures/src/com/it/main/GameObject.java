@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 
 /**
- * @author vincent.wiechmann, karl.mattes
+ * @author vincent wiechmann, karl mattes
  *
  */
 public abstract class GameObject {
