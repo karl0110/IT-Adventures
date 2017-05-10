@@ -163,6 +163,7 @@ public class Game extends Canvas implements Runnable{
 		frame.setVisible(true);//Macht das Fenster sichtbar.
 		game.start();//Ruft die Methode start() zum initialisieren des Threads auf.
 		
+		
 	}
 	
 	/*
