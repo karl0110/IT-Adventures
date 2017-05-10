@@ -60,7 +60,7 @@ public class Player extends GameObject {
 
 
 	public Rectangle getRightBounds() {
-		return new Rectangle((int) x , (int) y/2, (int) width -2, (int)height/2 );
-	}//fertisch machen
+		return new Rectangle((int) x+((int)height-2) , (int) y, 2, (int)height );
+	}
 
 }
