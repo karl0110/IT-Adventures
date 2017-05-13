@@ -43,8 +43,33 @@ public class Player extends GameObject {
 	}
 	
 	public void collision(GameObjectHandler handler){
+		//hier must die collision hin ja, ja
+		//das ist eine blöde situation ja, ja
+		//ich bin auf der letzten Ration ja, ja
+		//shit das is viel zu viel information ja, ja
+		//deutschland is eine geile nation ja, ja
+		//GOA GOA GOA ich bin jetz ertig ja, ja
+	}
+	
+	private void collisionReaction(String collisionDirection){
+		switch (collisionDirection){
+		case "left":
+			
+			break;
+		case "top":
+			
+			break;
+		case "right":
+			
+			break;
+		case "bottom":
 		
-	}//fertisch machen
+			break;
+		
+		}
+		
+		
+	}
 
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int) x +1, (int) y, (int) width -2, (int) height/2);
