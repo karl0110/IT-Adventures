@@ -75,10 +75,14 @@ public class Player extends GameObject {
 		}
 				
 	}
+
 	
+<<<<<<< HEAD
 
 		
 	
+=======
+>>>>>>> branch 'master' of https://github.com/karl0110/IT-Adventures
 
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int) x +1, (int) y, (int) width -2, (int) height/2);
