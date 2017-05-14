@@ -12,7 +12,7 @@ public class Player extends GameObject {
 	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
 		super(x, y, imageLoader, type, handler);
 		falling=true;
-		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height, characterType.ssCol),10);
+		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),10);
 		
 	}
 
@@ -29,6 +29,8 @@ public class Player extends GameObject {
 	 * 
 	 */
 	public void tick() {
+		collision(handler);
+		
 		x += velX;
 		y += velY;
 		
@@ -39,7 +41,7 @@ public class Player extends GameObject {
 		}
 		
 		if(velX==0)idleAnimator.runAnimation();
-		collision(handler);
+		
 		
 	}
 	
@@ -54,10 +56,12 @@ public class Player extends GameObject {
 			GameObject tempObject=handler.object.get(i);
 			if(tempObject.isPassable()==false){
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
+					y=tempObject.getY()-(int)height;
 					falling = false;
 					jumping = false;
+					
 					velY=0;
-					y=tempObject.getY()-(int)height;
+					
 					
 				}
 				if(getUpperBounds().intersects(tempObject.getBottomBounds())) {
