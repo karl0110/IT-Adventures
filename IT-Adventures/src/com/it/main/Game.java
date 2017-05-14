@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 /*
- * Author: Jaime Hall
+ * Author: Jaime Hall(angeblich)
  * 
  * Klasse erweitert Canvas um ein Fenster zum anzeigen des Spiels zu erstellen.
  * Klasse implementiert Runnable um die Methode run zu Nutzen, welche beim starten eines neuen Threads aufgerufen wird.

@@ -52,7 +52,7 @@ public class Player extends GameObject {
 		//GOA GOA GOA ich bin jetz ertig ja, ja
 		for(int i=0;i<handler.object.size();i++){
 			GameObject tempObject=handler.object.get(i);
-			//if(!tempObject.isPassable()){
+			if(tempObject.isPassable()==false){
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
 					velY=0;
 					y=tempObject.getY()-(int)height;
@@ -71,7 +71,7 @@ public class Player extends GameObject {
 					
 
 				}
-			//}
+			}
 		}
 				
 	}
