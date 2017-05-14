@@ -50,26 +50,8 @@ public class Player extends GameObject {
 		//deutschland is eine geile nation ja, ja
 		//GOA GOA GOA ich bin jetz ertig ja, ja
 	}
+
 	
-	private void collisionReaction(String collisionDirection){
-		switch (collisionDirection){
-		case "left":
-			
-			break;
-		case "top":
-			
-			break;
-		case "right":
-			
-			break;
-		case "bottom":
-		
-			break;
-		
-		}
-		
-		
-	}
 
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int) x +1, (int) y, (int) width -2, (int) height/2);
