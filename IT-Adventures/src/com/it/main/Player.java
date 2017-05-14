@@ -34,42 +34,51 @@ public class Player extends GameObject {
 		
 		if(falling || jumping){
 			
-			//velY += 0.05f;
+			velY += 0.05f;
 			//joa also dann öööhm fällt er halt
 		}
 		
-		if(velX==0&&velY==0)idleAnimator.runAnimation();
+		if(velX==0)idleAnimator.runAnimation();
+		collision(handler);
 		
 	}
 	
-	public void collision(GameObjectHandler handler){
+	private void collision(GameObjectHandler handler){
 		//hier must die collision hin ja, ja
 		//das ist eine blöde situation ja, ja
 		//ich bin auf der letzten Ration ja, ja
 		//shit das is viel zu viel information ja, ja
 		//deutschland is eine geile nation ja, ja
 		//GOA GOA GOA ich bin jetz ertig ja, ja
+		for(int i=0;i<handler.object.size();i++){
+			GameObject tempObject=handler.object.get(i);
+			//if(!tempObject.isPassable()){
+				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
+					velY=0;
+					y=tempObject.getY()-(int)height;
+					falling = false;
+					jumping = false;
+				}
+				if(getUpperBounds().intersects(tempObject.getBottomBounds())) {
+					
+
+				}
+				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
+					
+
+				}
+				if(getRightBounds().intersects(tempObject.getLeftBounds())) {
+					
+
+				}
+			//}
+		}
+				
 	}
 	
-	private void collisionReaction(String collisionDirection){
-		switch (collisionDirection){
-		case "left":
-			
-			break;
-		case "top":
-			
-			break;
-		case "right":
-			
-			break;
-		case "bottom":
+
 		
-			break;
-		
-		}
-		
-		
-	}
+	
 
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int) x +1, (int) y, (int) width -2, (int) height/2);

@@ -28,26 +28,22 @@ public class Block extends GameObject{
 
 	@Override
 	public Rectangle getUpperBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
 	@Override
 	public Rectangle getBottomBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
 	@Override
 	public Rectangle getLeftBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
 	@Override
 	public Rectangle getRightBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
 }
