@@ -36,7 +36,7 @@ public class Player extends GameObject {
 		
 		if(falling || jumping){
 			
-			velY += 0.05f;
+			velY += 0.981f;
 			//joa also dann öööhm fällt er halt
 		}
 		
@@ -52,23 +52,23 @@ public class Player extends GameObject {
 			if(tempObject.isPassable()==false){
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
 					y=tempObject.getY()-(int)height;
-					falling = false;
+					//falling = false;
 					jumping = false;
 					velY=0;
 					
 					
 				}
 				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
-					y=tempObject.getY();
+					y=tempObject.getY()+1;
 					velY=0;
 				}
 				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
-					x=tempObject.getX();
+					x=tempObject.getX()+1;
 					velX=0;	
 
 				}
 				if(getRightBounds().intersects(tempObject.getLeftBounds())) {
-					x=tempObject.getX()-(int)width;
+					x=tempObject.getX()-(int)width-1;
 					velX=0;
 
 				}
