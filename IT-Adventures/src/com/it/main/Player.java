@@ -42,16 +42,11 @@ public class Player extends GameObject {
 		
 		if(velX==0)idleAnimator.runAnimation();
 		
+		collision(handler);
 		
 	}
 	
 	private void collision(GameObjectHandler handler){
-		//hier must die collision hin ja, ja
-		//das ist eine blöde situation ja, ja
-		//ich bin auf der letzten Ration ja, ja
-		//shit das is viel zu viel information ja, ja
-		//deutschland is eine geile nation ja, ja
-		//GOA GOA GOA ich bin jetz ertig ja, ja
 		for(int i=0;i<handler.object.size();i++){
 			GameObject tempObject=handler.object.get(i);
 			if(tempObject.isPassable()==false){
@@ -59,21 +54,22 @@ public class Player extends GameObject {
 					y=tempObject.getY()-(int)height;
 					falling = false;
 					jumping = false;
-					
 					velY=0;
 					
 					
 				}
-				if(getUpperBounds().intersects(tempObject.getBottomBounds())) {
-					
-
+				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
+					y=tempObject.getY();
+					velY=0;
 				}
 				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
-					
+					x=tempObject.getX();
+					velX=0;	
 
 				}
 				if(getRightBounds().intersects(tempObject.getLeftBounds())) {
-					
+					x=tempObject.getX()-(int)width;
+					velX=0;
 
 				}
 			}
