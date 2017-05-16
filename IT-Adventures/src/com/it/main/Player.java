@@ -29,7 +29,7 @@ public class Player extends GameObject {
 	 * 
 	 */
 	public void tick() {
-		collision(handler);
+		collision();
 		
 		x += velX;
 		y += velY;
@@ -42,11 +42,11 @@ public class Player extends GameObject {
 		
 		if(velX==0)idleAnimator.runAnimation();
 		
-		collision(handler);
+		
 		
 	}
 	
-	private void collision(GameObjectHandler handler){
+	private void collision(){
 		for(int i=0;i<handler.object.size();i++){
 			GameObject tempObject=handler.object.get(i);
 			if(tempObject.isPassable()==false){
