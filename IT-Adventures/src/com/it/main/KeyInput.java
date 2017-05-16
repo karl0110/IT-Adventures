@@ -27,9 +27,9 @@ public class KeyInput extends KeyAdapter{
 			
 			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
 			
-				if(key==KeyEvent.VK_LEFT)tempObject.setVelX(-3);
+				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A)tempObject.setVelX(-3);
 			
-				if(key==KeyEvent.VK_RIGHT)tempObject.setVelX(3);
+				if(key==KeyEvent.VK_RIGHT || key==KeyEvent.VK_D)tempObject.setVelX(3);
 				
 				
 			}
@@ -46,9 +46,9 @@ public class KeyInput extends KeyAdapter{
 			
 			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
 				
-				if(key==KeyEvent.VK_LEFT)tempObject.setVelX(0);
+				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A)tempObject.setVelX(0);
 			
-				if(key==KeyEvent.VK_RIGHT)tempObject.setVelX(0);
+				if(key==KeyEvent.VK_RIGHT || key==KeyEvent.VK_D)tempObject.setVelX(0);
 				
 				
 			}
