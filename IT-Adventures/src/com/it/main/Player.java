@@ -81,11 +81,11 @@ public class Player extends GameObject {
 	}
 
 	public Rectangle getUpperBounds() {
-		return new Rectangle((int) x +2, (int) y, (int) width -4, (int) height/2);
+		return new Rectangle((int) x +5, (int) y, (int) width -10, (int) height/2);
 	}
 
 	public Rectangle getBottomBounds() {
-		return new Rectangle((int) x+2, (int) y+(int)(height/2), (int) width -4, (int)height/2 );
+		return new Rectangle((int) x+5, (int) y+(int)(height/2), (int) width -10, (int)height/2 );
 	}
 
 	public Rectangle getLeftBounds() {
