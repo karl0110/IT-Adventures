@@ -39,8 +39,8 @@ public class Player extends GameObject {
 			velY += 0.981f;
 			//joa also dann öööhm fällt er halt
 		}
-		if(velX!=0){
-			falling =true;
+		if (velX != 0) {
+			falling = true;
 		}
 		
 		if(velX==0)idleAnimator.runAnimation();
