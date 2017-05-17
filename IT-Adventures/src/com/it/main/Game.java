@@ -3,6 +3,7 @@ package com.it.main;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -29,6 +30,7 @@ public class Game extends Canvas implements Runnable{
 	private GameObjectHandler handler;
 	private Sound sound;
 	private BufferedImage background;
+	private Camera camera;
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
@@ -88,6 +90,7 @@ public class Game extends Canvas implements Runnable{
 		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
 		background=imageLoader.loadImage("/images/castle.png");//Temporär
+		camera = new Camera(0, 0);
 		
 		
 	}
@@ -105,6 +108,14 @@ public class Game extends Canvas implements Runnable{
 		}
 		else if(Game.State==Game.STATE.Game){
 			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, werden alle Spielobjekte über den GameObjectHandler aktualisiert.
+			for(int i=0; i<handler.object.size(); i++){
+				
+				GameObject tempObject = handler.object.get(i);
+				if(tempObject.getType()==ObjectType.Player){
+					camera.tick(tempObject);
+				}
+				
+			}
 		}
 	}
 	
@@ -119,6 +130,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		
 		Graphics g = bs.getDrawGraphics();//Von dem BufferStrategy Objekt wird dann ein Graphics Objekt geholt, welches zum eigentlichen malen der Grafiken gebraucht wird.
+		Graphics2D g2d=(Graphics2D)g;
 		////////////////Bereich zum zeichnen von diversen Grafiken
 		
 		if(Game.State==Game.STATE.MainMenu){
@@ -131,7 +143,9 @@ public class Game extends Canvas implements Runnable{
 		else if(Game.State==Game.STATE.Game){
 			
 			g.drawImage(background, 0, 0,1920,1080, null);
+			g2d.translate(camera.getX(), camera.getY());
 			handler.render(g);////Wenn der Zustand des Spieles das Spiel selber ist, werden die Grafiken von allen Spielobjekten über den GameObjectHandler geladen.
+			g2d.translate(-camera.getX(), -camera.getY());
 		}
 		
 		
