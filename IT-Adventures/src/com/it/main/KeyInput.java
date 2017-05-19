@@ -27,12 +27,12 @@ public class KeyInput extends KeyAdapter{
 			
 			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
 			
-				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A)tempObject.setVelX(-3);
+				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A )tempObject.setVelX(-3);
 			
 				if(key==KeyEvent.VK_RIGHT || key==KeyEvent.VK_D)tempObject.setVelX(3);
 				
 				if(key==KeyEvent.VK_SPACE&&!tempObject.isJumping()){
-					tempObject.setVelY(-20);
+					tempObject.setVelY(-19);
 					tempObject.setFalling(true);
 					tempObject.setJumping(true);
 				}

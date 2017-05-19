@@ -43,6 +43,7 @@ public class Player extends GameObject {
 			falling = true;
 		}
 		
+		
 		if(velX==0)idleAnimator.runAnimation();
 		
 		
