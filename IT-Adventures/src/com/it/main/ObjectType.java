@@ -5,7 +5,8 @@ public enum ObjectType {
 	Player("/images/character_sprite_sheet.png",true,false,32,64,1,2),
 	Stone("/images/block_sprite_sheet.png",false,false,32,32,3,1),
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),
-	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1);
+	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1),
+	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,2,1);
 	
 	
 	

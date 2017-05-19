@@ -2,6 +2,7 @@ package com.it.main;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class Block extends GameObject{
 
@@ -9,6 +10,11 @@ public class Block extends GameObject{
 		super(x,y,imageLoader, type,handler);
 		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		
+	}
+	
+	public Block(float x,float y, GameObjectHandler handler,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image){
+		super(x,y,imageLoader, type,handler);
+		this.image=image;
 	}
 
 	@Override
