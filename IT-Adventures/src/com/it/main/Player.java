@@ -52,7 +52,7 @@ public class Player extends GameObject {
 	private void collision(){
 		for(int i=0;i<handler.object.size();i++){
 			GameObject tempObject=handler.object.get(i);
-			if(tempObject.isPassable()==false){
+			if(tempObject.isPassable()==false && tempObject.getX()>(x-100) && tempObject.getX() <(x+100)){
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
 					y=tempObject.getY()-(int)height-1;
 					falling = false;
