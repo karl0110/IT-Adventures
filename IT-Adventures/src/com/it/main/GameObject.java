@@ -18,8 +18,9 @@ public abstract class GameObject {
 	protected BufferedImage image;
 	protected GameObjectHandler handler;
 	protected ObjectType type;
+	protected Player player;
 	
-	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler) {
+	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler,Player player) {
 		this.x=x;
 		this.y=y;
 		
@@ -28,6 +29,10 @@ public abstract class GameObject {
 		this.width=type.width;
 		this.height=type.height;
 		this.type = type;
+		this.player=player;
+		
+			
+		
 	}
 	
 	public ObjectType getType() {

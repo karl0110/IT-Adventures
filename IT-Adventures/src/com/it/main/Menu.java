@@ -8,12 +8,12 @@ public class Menu {
 	private BufferedImage mainMenuBackground, playMenuBackground;
 	private boolean animatingPlay=false;
 	private float x,y=0;
-	private Sound sound;
+	//private Sound sound;
 
 	public Menu(BufferedImageLoader imageLoader, Game game,Sound sound) {
 		mainMenuBackground = imageLoader.loadImage("/images/mainMenuBackground.png");
 		playMenuBackground = imageLoader.loadImage("/images/play_Background.png");
-		this.sound=sound;
+		//this.sound=sound;
 		
 
 	}
@@ -23,7 +23,7 @@ public class Menu {
 			
 			y+=50f;
 			if(y>(-1*(Game.HEIGHT/32))){
-				sound.playSound("/sound/fall.wav");
+				//sound.playSound("/sound/fall.wav");
 				animatingPlay=false;
 				y=0;
 			}

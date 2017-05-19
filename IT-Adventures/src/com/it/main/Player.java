@@ -9,8 +9,8 @@ public class Player extends GameObject {
 
 	private Animator idleAnimator;
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
-		super(x, y, imageLoader, type, handler);
+	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Player player) {
+		super(x, y, imageLoader, type, handler,player);
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
 		

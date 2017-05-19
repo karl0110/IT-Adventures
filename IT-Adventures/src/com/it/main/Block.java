@@ -6,14 +6,14 @@ import java.awt.image.BufferedImage;
 
 public class Block extends GameObject{
 
-	public Block(float x,float y,GameObjectHandler handler,BufferedImageLoader imageLoader, ObjectType type) {
-		super(x,y,imageLoader, type,handler);
+	public Block(float x,float y,GameObjectHandler handler,BufferedImageLoader imageLoader, ObjectType type,Player player) {
+		super(x,y,imageLoader, type,handler,player);
 		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		
 	}
 	
-	public Block(float x,float y, GameObjectHandler handler,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image){
-		super(x,y,imageLoader, type,handler);
+	public Block(float x,float y, GameObjectHandler handler,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image,Player player){
+		super(x,y,imageLoader, type,handler,player);
 		this.image=image;
 	}
 
@@ -23,7 +23,9 @@ public class Block extends GameObject{
 		
 		//g.fillRect((int)x, (int)y, (int)width, (int)height);
 		
-		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
+		if(x>=(player.getX()-Game.WIDTH/2)&&x<=(player.getX()+Game.WIDTH/2)){
+			g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
+		}
 	}
 
 	@Override
