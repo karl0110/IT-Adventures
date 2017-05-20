@@ -54,7 +54,7 @@ public class Player extends GameObject {
 			if(tempObject.isPassable()==false){
 				
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
-					y=(tempObject.getY()-(int)height)+1;
+					y=(tempObject.getY()-(int)height);
 					falling = false;
 					if(jumping==true)jumping = false;
 					velY=0;
