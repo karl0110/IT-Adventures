@@ -7,14 +7,12 @@ public class Background{
 
 	private BackgroundType backgroundType;
 	private BufferedImageLoader imageLoader;
-	private GameObjectHandler handler;
 	private BufferedImage[] images;
 	private String[] imagePaths;
 	
-	public Background(BackgroundType backgroundType,BufferedImageLoader imageLoader,GameObjectHandler handler){
+	public Background(BackgroundType backgroundType,BufferedImageLoader imageLoader){
 		this.backgroundType=backgroundType;
 		this.imageLoader=imageLoader;
-		this.handler=handler;
 		imagePaths=new String[backgroundType.backgroundImageLocations.length];
 		for(int i =0;i<backgroundType.backgroundImageLocations.length;i++){
 			imagePaths[i]=backgroundType.backgroundImageLocations[i];
