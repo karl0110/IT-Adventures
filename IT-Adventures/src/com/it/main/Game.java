@@ -29,8 +29,9 @@ public class Game extends Canvas implements Runnable{
 	private BufferedImageLoader imageLoader;
 	private GameObjectHandler handler;
 	private Sound sound;
-	private BufferedImage background;
+	//private BufferedImage background;
 	private Camera camera;
+	private Background background;
 	
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
@@ -89,7 +90,8 @@ public class Game extends Canvas implements Runnable{
 		this.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		camera = levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
-		background= new BufferedImage(Game.WIDTH, Game.HEIGHT,BufferedImage.TYPE_INT_RGB); 
+		//background= new BufferedImage(Game.WIDTH, Game.HEIGHT,BufferedImage.TYPE_INT_RGB); 
+		background= new Background(BackgroundType.Day, imageLoader, handler);
 	
 		
 		
@@ -135,7 +137,8 @@ public class Game extends Canvas implements Runnable{
 		}
 		else if(Game.State==Game.STATE.Game){
 			
-			g.drawImage(background, 0, 0,1920,1080, null);
+			//g.drawImage(background, 0, 0,1920,1080, null);
+			background.render(g);
 			g2d.translate(camera.getX(), camera.getY());
 			handler.render(g);////Wenn der Zustand des Spieles das Spiel selber ist, werden die Grafiken von allen Spielobjekten über den GameObjectHandler geladen.
 			g2d.translate(-camera.getX(), -camera.getY());
