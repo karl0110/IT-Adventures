@@ -29,7 +29,7 @@ public class Player extends GameObject {
 	 * 
 	 */
 	public void tick() {
-		collision();
+		
 		
 		x += velX;
 		y += velY;
@@ -39,7 +39,7 @@ public class Player extends GameObject {
 			velY += 0.981f;
 			//joa also dann öööhm fällt er halt
 		}
-		
+		collision();
 		
 		
 		if(velX==0)idleAnimator.runAnimation();
