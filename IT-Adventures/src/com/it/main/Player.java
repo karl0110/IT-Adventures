@@ -39,9 +39,7 @@ public class Player extends GameObject {
 			velY += 0.981f;
 			//joa also dann öööhm fällt er halt
 		}
-		if (velX != 0) {
-			falling = true;
-		}
+		
 		
 		
 		if(velX==0)idleAnimator.runAnimation();
@@ -56,13 +54,15 @@ public class Player extends GameObject {
 			if(tempObject.isPassable()==false){
 				
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
-					y=tempObject.getY()-(int)height-1;
+					y=(tempObject.getY()-(int)height)+1;
 					falling = false;
-					jumping = false;
+					if(jumping==true)jumping = false;
 					velY=0;
-					
-					
 				}
+				else{
+					falling =true;
+				}
+				
 				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
 					y=tempObject.getY()+tempObject.getHeight()+1;
 					velY=0;
@@ -91,12 +91,12 @@ public class Player extends GameObject {
 	}
 
 	public Rectangle getLeftBounds() {
-		return new Rectangle((int) x, (int) y, (int) 2, (int)height );
+		return new Rectangle((int) x, (int) y+2, (int) 2, (int)height-4 );
 	}
 
 
 	public Rectangle getRightBounds() {
-		return new Rectangle((int) x+((int)width-2) , (int) y, 2, (int)height );
+		return new Rectangle((int) x+((int)width-2) , (int) y+2, 2, (int)height-4 );
 	}
 
 }
