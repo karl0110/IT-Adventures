@@ -12,7 +12,8 @@ public class LevelLoader {
 		this.handler=handler;
 	}
 	
-	public void loadLevel(String characterName,int level){
+	public Camera loadLevel(String characterName,int level){
+		
 		handler.removeAllObjects();
 		BufferedImage levelImage = imageLoader.loadImage("/levelImages/"+characterName+"_"+level+".png");
 		BufferedImage gras = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 2, 1, 32, 32);
@@ -46,6 +47,8 @@ public class LevelLoader {
 				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,handler,imageLoader,ObjectType.Stone,stone,player));
 			}
 		}
+		return new Camera(0,0,player);
+		
 		
 	}
 }

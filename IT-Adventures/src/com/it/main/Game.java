@@ -88,9 +88,9 @@ public class Game extends Canvas implements Runnable{
 		menu=new Menu(imageLoader,this,sound);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		this.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
-		levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
-		background=imageLoader.loadImage("/images/castle.png");//Temporär
-		camera = new Camera(0, 0);
+		camera = levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
+		background= new BufferedImage(Game.WIDTH, Game.HEIGHT,BufferedImage.TYPE_INT_RGB); 
+	
 		
 		
 	}
@@ -108,14 +108,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		else if(Game.State==Game.STATE.Game){
 			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, werden alle Spielobjekte über den GameObjectHandler aktualisiert.
-			for(int i=0; i<handler.object.size(); i++){
-				
-				GameObject tempObject = handler.object.get(i);
-				if(tempObject.getType()==ObjectType.Player){
-					camera.tick(tempObject);
-				}
-				
-			}
+			camera.tick();
 		}
 	}
 	

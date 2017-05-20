@@ -23,9 +23,9 @@ public class Block extends GameObject{
 		
 		//g.fillRect((int)x, (int)y, (int)width, (int)height);
 		
-		if((x>=(player.getX()-Game.WIDTH/2)) && (x<=(player.getX()+Game.WIDTH/2))){
+		
 			g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
-		}
+		
 	}
 
 	@Override

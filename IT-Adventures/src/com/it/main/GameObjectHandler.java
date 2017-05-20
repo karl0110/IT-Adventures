@@ -26,7 +26,7 @@ public class GameObjectHandler {
 	{
 		for (int i = 0; i < object.size(); i++) {
 			GameObject tempObject = object.get(i);
-
+			
 			tempObject.render(g);
 		}
 	}
