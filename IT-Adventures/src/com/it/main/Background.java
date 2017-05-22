@@ -26,7 +26,7 @@ public class Background{
 		for(int i=0;i<numberOfSegments;i++){
 			int index = (Math.round((float)Math.random()*imagePaths.length))-1;
 			if(index==-1)index=0;
-			images[i]=imageLoader.loadImage(imagePaths[0]);
+			images[i]=imageLoader.loadImage(imagePaths[index]);
 					
 		}
 		

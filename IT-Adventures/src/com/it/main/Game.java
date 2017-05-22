@@ -19,6 +19,7 @@ public class Game extends Canvas implements Runnable{
 
 	public static final int WIDTH=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;//Klassenkonstante für die Breite des Fensters, wird automatisch auf die maximale Breite des jeweiligen Bildschirms gesetzt.
 	public static final int HEIGHT=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;//Klassenkonstante für die Höhe des Fensters, wird automatisch auf die maximale Höhe des jeweiligen Bildschirms gesetzt.
+	public static final String TITLE="IT-Adventures";
 	
 	private static final long serialVersionUID = 1L;
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
@@ -154,7 +155,7 @@ public class Game extends Canvas implements Runnable{
 
 	public static void main(String args[]){
 		Game game = new Game();
-		JFrame frame = new JFrame();//Das Fenster in dem alles angezeigt wird.
+		JFrame frame = new JFrame(TITLE);//Das Fenster in dem alles angezeigt wird.
 		
 		game.setMinimumSize(new Dimension(WIDTH,HEIGHT));
 		game.setPreferredSize(new Dimension(WIDTH,HEIGHT));
