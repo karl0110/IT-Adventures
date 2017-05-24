@@ -7,14 +7,15 @@ import java.awt.Rectangle;
 
 public class Player extends GameObject {
 
-	private Animator idleAnimator;
-	private Animator rightWalkAnimator;
+	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator;
+	
 	
 	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Player player) {
 		super(x, y, imageLoader, type, handler,player);
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
-		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 1, width, height,characterType.ssCol),15);
+		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 6, width, height,characterType.ssCol),15);
+		leftWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_left_ss.png", 6, width, height,characterType.ssCol),15);
 	}
 
 	public void render(Graphics g) {
@@ -22,8 +23,9 @@ public class Player extends GameObject {
 		
 		//g.fillRect((int)x, (int)y, (int)width, (int)height);
 		//g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
-		if(velX==0)idleAnimator.renderAnimation(g, x, y, width, height);
-		else if(velX>0)rightWalkAnimator.renderAnimation(g, x, y, width, height);
+		
+		if(velX>0)rightWalkAnimator.renderAnimation(g, x, y, width, height);
+		else if(velX<0)leftWalkAnimator.renderAnimation(g, x, y, width, height);
 		else idleAnimator.renderAnimation(g, x, y, width, height);
 
 	}
@@ -47,6 +49,7 @@ public class Player extends GameObject {
 		
 		if(velX==0)idleAnimator.runAnimation();
 		else if(velX>0)rightWalkAnimator.runAnimation();
+		else if(velX<0)leftWalkAnimator.runAnimation();
 		
 		
 		
