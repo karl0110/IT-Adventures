@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 
 public class Player extends GameObject {
 
-	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator;
+	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
 	
 	
 	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Player player) {
@@ -16,16 +16,28 @@ public class Player extends GameObject {
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
 		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 6, width, height,characterType.ssCol),15);
 		leftWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_left_ss.png", 6, width, height,characterType.ssCol),15);
+		rightJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_right_ss.png", 3, width, height,characterType.ssCol),15);
+		leftJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_left_ss.png", 3, width, height,characterType.ssCol),15);
 	}
 
 	public void render(Graphics g) {
-		//g.setColor(Color.BLUE);
-		
-		//g.fillRect((int)x, (int)y, (int)width, (int)height);
-		//g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
-		
-		if(velX>0)rightWalkAnimator.renderAnimation(g, x, y, width, height);
-		else if(velX<0)leftWalkAnimator.renderAnimation(g, x, y, width, height);
+
+		if(velX>0){
+			if(!jumping){
+				rightWalkAnimator.renderAnimation(g, x, y, width, height);
+			}
+			else{
+				rightJumpAnimator.renderAnimation(g, x, y, width, height);
+			}
+		}
+		else if(velX<0){
+			if(!jumping){
+				leftWalkAnimator.renderAnimation(g, x, y, width, height);
+			}
+			else{
+				leftJumpAnimator.renderAnimation(g, x, y, width, height);
+			}
+		}
 		else idleAnimator.renderAnimation(g, x, y, width, height);
 
 	}
@@ -48,8 +60,22 @@ public class Player extends GameObject {
 		
 		
 		if(velX==0)idleAnimator.runAnimation();
-		else if(velX>0)rightWalkAnimator.runAnimation();
-		else if(velX<0)leftWalkAnimator.runAnimation();
+		else if(velX>0){
+			if(!jumping){
+				rightWalkAnimator.runAnimation();
+			}
+			else{
+				rightJumpAnimator.runAnimation();
+			}
+		}
+		else if(velX<0){
+			if(!jumping){
+				leftWalkAnimator.runAnimation();
+			}
+			else{
+				leftJumpAnimator.runAnimation();
+			}
+		}
 		
 		
 		
