@@ -51,10 +51,10 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
-		if(falling || jumping){
+		// Künstliche Gravitation für den Spieler wenn er fällt oder springt (also immer)
+		if(falling || jumping){ 
 			
-			velY += 0.981f;
-			//joa also dann öööhm fällt er halt
+			velY += 0.981f; // Y-Wert steigt immer (wird durch Kollision unterbrochen)
 		}
 		collision();
 		
@@ -114,6 +114,10 @@ public class Player extends GameObject {
 		}
 				
 	}
+
+	/**
+	 *  Vier Kollisionsrechtecke für den Spieler (Oben, Unten, Links und Rechts) werden erstellt
+	 */
 
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int) x +5, (int) y, (int) width -10, (int) height/2);
