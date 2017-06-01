@@ -35,6 +35,10 @@ public abstract class GameObject {
 		
 	}
 	
+	/**
+	 * Es folgen alle Get-und Set Methoden, sowie die abstrakten Methoden für die Vererbung
+	 */
+	
 	public ObjectType getType() {
 		return type;
 	}

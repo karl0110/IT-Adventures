@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable{
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
 	/*
-	 * Diese Methode wird beim starten des Threads aufgerufen. Sie beeinhaltet die Initilaisierung und die Haup Spiel-Schleife.
+	 * Diese Methode wird beim starten des Threads aufgerufen. Sie beeinhaltet die Initilaisierung und die Hauptspiel-Schleife.
 	 * 
 	 */
 	public void run() {
