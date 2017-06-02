@@ -17,40 +17,35 @@ public class Block extends NonPlayerGameObject{
 		this.image=image;
 	}
 
-	@Override
+
 	public void render(Graphics g) {
-		//g.setColor(Color.BLUE);
-		
-		//g.fillRect((int)x, (int)y, (int)width, (int)height);
-		
+
 		if(player.getX()>x-Game.WIDTH &&player.getX()<x+Game.WIDTH){
 			g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
 		}
 		
 	}
 
-	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	@Override
+	
 	public Rectangle getUpperBounds() {
 		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
-	@Override
+	
 	public Rectangle getBottomBounds() {
 		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
-	@Override
+	
 	public Rectangle getLeftBounds() {
 		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}
 
-	@Override
+	
 	public Rectangle getRightBounds() {
 		return new Rectangle((int)x,(int)y,(int)width,(int)height);
 	}

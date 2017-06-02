@@ -1,12 +1,8 @@
 package com.it.main;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-
-import javax.swing.JFrame;
 
 /*
  * Author: Jaime Hall(angeblich)
@@ -15,15 +11,15 @@ import javax.swing.JFrame;
  * Klasse implementiert Runnable um die Methode run zu Nutzen, welche beim starten eines neuen Threads aufgerufen wird.
  */
 
-public class Game extends Canvas implements Runnable{
+public class Game implements Runnable{
 
 	public static final int WIDTH=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;//Klassenkonstante für die Breite des Fensters, wird automatisch auf die maximale Breite des jeweiligen Bildschirms gesetzt.
 	public static final int HEIGHT=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;//Klassenkonstante für die Höhe des Fensters, wird automatisch auf die maximale Höhe des jeweiligen Bildschirms gesetzt.
 	public static final String TITLE="IT-Adventures";
 	
-	private static final long serialVersionUID = 1L;
 	private boolean running;//Boolsche Variable die bestimmt ob das Spiel am laufen ist.
 	
+	private Window window;
 	private Thread thread;
 	private Menu menu;
 	private BufferedImageLoader imageLoader;
@@ -36,6 +32,12 @@ public class Game extends Canvas implements Runnable{
 		MainMenu,PlayMenu,Game
 	};
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
+	
+	
+	public Game(){
+		window=new Window(TITLE,WIDTH,HEIGHT);
+		start();//Ruft die Methode start() zum initialisieren des Threads auf.
+	}
 	
 	/*
 	 * Diese Methode wird beim starten des Threads aufgerufen. Sie beeinhaltet die Initilaisierung und die Hauptspiel-Schleife.
@@ -84,9 +86,9 @@ public class Game extends Canvas implements Runnable{
 		sound = new Sound();//Sound Klasse ist für Wiedergabe von diversen Geräuschen da.
 		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
 		handler=new GameObjectHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
-		this.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		window.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new Menu(imageLoader,this,sound);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
-		this.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		window.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		camera = levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
 		background= new Background(BackgroundType.Night, imageLoader);
@@ -116,9 +118,9 @@ public class Game extends Canvas implements Runnable{
 	 * //Methode zum malen von diversen Grafiken.
 	 */
 	public void render(){
-		BufferStrategy bs = this.getBufferStrategy();//Es wird eine Strategie geladen, welche es dem Programm ermöglicht Grafiken im Voraus vorzumalen, um effizienter mit den Resourcen des Computers umzugehen.
+		BufferStrategy bs = window.getBufferStrategy();//Es wird eine Strategie geladen, welche es dem Programm ermöglicht Grafiken im Voraus vorzumalen, um effizienter mit den Resourcen des Computers umzugehen.
 		if(bs==null){
-			createBufferStrategy(3);//Falls noch keine Strategie vorhanden ist, wird eine neue erstellt. Die 3 im Parameter bedeutet, dass zwei bilder im voraus gemalt werden.
+			window.createBufferStrategy(3);//Falls noch keine Strategie vorhanden ist, wird eine neue erstellt. Die 3 im Parameter bedeutet, dass zwei bilder im voraus gemalt werden.
 			return;
 		}
 		
@@ -154,23 +156,7 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	public static void main(String args[]){
-		Game game = new Game();
-		JFrame frame = new JFrame(TITLE);//Das Fenster in dem alles angezeigt wird.
-		
-		game.setMinimumSize(new Dimension(WIDTH,HEIGHT));
-		game.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		game.setMaximumSize(new Dimension(WIDTH,HEIGHT));
-		
-		frame.add(game);//Das Spiel wird dem JFrame hinzugefügt um Fensterpreferenzen zu übernehmen.
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Ermöglicht das Beenden des Programmes durch Schließen des Fensters.
-		frame.setUndecorated(true);//Entfernt die Menüleiste oben am Bildschirm (Vollbild)
-		frame.pack();
-		frame.setResizable(false);//Fenster kann nicht vergrößert oder verkleinert werden, für korrekt Skalierung notwendig.
-		frame.setLocationRelativeTo(null);//Bewegt Fenster in die Mitte des Bildschirms.
-		frame.setVisible(true);//Macht das Fenster sichtbar.
-		game.start();//Ruft die Methode start() zum initialisieren des Threads auf.
-		
+		new Game();
 		
 	}
 	
