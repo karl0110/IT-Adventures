@@ -4,16 +4,16 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Block extends GameObject{
+public class Block extends NonPlayerGameObject{
 
-	public Block(float x,float y,GameObjectHandler handler,BufferedImageLoader imageLoader, ObjectType type,Player player) {
-		super(x,y,imageLoader, type,handler,player);
+	public Block(float x,float y,BufferedImageLoader imageLoader, ObjectType type,Player player) {
+		super(x,y,imageLoader, type,player);
 		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		
 	}
 	
-	public Block(float x,float y, GameObjectHandler handler,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image,Player player){
-		super(x,y,imageLoader, type,handler,player);
+	public Block(float x,float y,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image,Player player){
+		super(x,y,imageLoader, type,player);
 		this.image=image;
 	}
 
@@ -23,8 +23,9 @@ public class Block extends GameObject{
 		
 		//g.fillRect((int)x, (int)y, (int)width, (int)height);
 		
-		
+		if(player.getX()>x-Game.WIDTH &&player.getX()<x+Game.WIDTH){
 			g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
+		}
 		
 	}
 

@@ -8,10 +8,11 @@ import java.awt.Rectangle;
 public class Player extends GameObject {
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
+	private GameObjectHandler handler;
 	
-	
-	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Player player) {
-		super(x, y, imageLoader, type, handler,player);
+	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
+		super(x, y, imageLoader, type);
+		this.handler=handler;
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
 		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 6, width, height,characterType.ssCol),15);

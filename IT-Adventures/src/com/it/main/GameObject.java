@@ -16,20 +16,15 @@ public abstract class GameObject {
 	protected float x,y,velX,velY,width,height;
 	protected boolean falling,jumping,passable;
 	protected BufferedImage image;
-	protected GameObjectHandler handler;
 	protected ObjectType type;
-	protected Player player;
 	
-	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,GameObjectHandler handler,Player player) {
+	public GameObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type) {
 		this.x=x;
 		this.y=y;
-		
 		this.passable=type.passable;
-		this.handler=handler;
 		this.width=type.width;
 		this.height=type.height;
 		this.type = type;
-		this.player=player;
 		
 			
 		
@@ -127,14 +122,6 @@ public abstract class GameObject {
 		this.image = image;
 	}
 
-	public GameObjectHandler getHandler() {
-		return handler;
-	}
-
-	public void setHandler(GameObjectHandler handler) {
-		this.handler = handler;
-	}
-	
 	public abstract void render(Graphics g);
 	
 	public abstract void tick();
