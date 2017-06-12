@@ -23,7 +23,7 @@ public class KeyInput extends KeyAdapter{
 		
 		}
 		for(int i=0;i<handler.object.size();i++){
-			GameObject tempObject=handler.object.get(i);
+			Tile tempObject=handler.object.get(i);
 			
 			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
 			
@@ -48,7 +48,7 @@ public class KeyInput extends KeyAdapter{
 	public void keyReleased(KeyEvent e){
 		int key=e.getKeyCode();
 		for(int i=0;i<handler.object.size();i++){
-			GameObject tempObject=handler.object.get(i);
+			Tile tempObject=handler.object.get(i);
 			
 			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
 				

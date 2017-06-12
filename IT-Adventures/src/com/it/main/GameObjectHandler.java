@@ -8,11 +8,11 @@ import java.util.LinkedList;
 
 public class GameObjectHandler {
 
-	public LinkedList<GameObject> object = new LinkedList<GameObject>();
+	public LinkedList<Tile> object = new LinkedList<Tile>();
 	
 	public void tick(){
 		for (int i = 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
+			Tile tempObject = object.get(i);
 
 			
 			if(tempObject.getType()==ObjectType.Player){
@@ -25,17 +25,17 @@ public class GameObjectHandler {
 	public void render(Graphics g)
 	{
 		for (int i = 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
+			Tile tempObject = object.get(i);
 			
 			tempObject.render(g);
 		}
 	}
 	
-	public void addObject(GameObject object){
+	public void addObject(Tile object){
 		this.object.add(object);
 	}
 	
-	public void removeObject(GameObject object){
+	public void removeObject(Tile object){
 		this.object.remove(object);
 	}
 	

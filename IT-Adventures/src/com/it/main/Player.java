@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 
 
-public class Player extends GameObject {
+public class Player extends Tile {
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
 	private GameObjectHandler handler;
@@ -84,7 +84,7 @@ public class Player extends GameObject {
 	
 	private void collision(){
 		for(int i=0;i<handler.object.size();i++){
-			GameObject tempObject=handler.object.get(i);
+			Tile tempObject=handler.object.get(i);
 			if(tempObject.isPassable()==false){
 				
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
