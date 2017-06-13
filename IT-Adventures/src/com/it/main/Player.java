@@ -11,12 +11,10 @@ public class Player extends TileEntity{
 	private GameObjectHandler handler;
 	private float health;
 	public  final static float MAXHEALTH=100;
-	private Game game;
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Game game) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
 		super(x, y, imageLoader, type);
 		this.handler=handler;
-		this.game=game;
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
 		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 6, width, height,characterType.ssCol),15);
@@ -83,11 +81,12 @@ public class Player extends TileEntity{
 			}
 		}
 		
+		if(y>Game.HEIGHT){
+			health=0;
+		}
+		
 		if(health==0){
-			
-			Menu gameOverMenu = new Menu(imageLoader, game);
-			
-			handler.removeObject(this);
+			Game.State=Game.STATE.GameOver;
 		}
 		
 	}

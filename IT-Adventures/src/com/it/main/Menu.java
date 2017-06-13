@@ -23,7 +23,7 @@ public class Menu {
 			
 			y+=50f;
 			if(y>(-1*(Game.HEIGHT/32))){
-				//sound.playSound("/sound/fall.wav");
+				
 				animatingPlay=false;
 				y=0;
 			}

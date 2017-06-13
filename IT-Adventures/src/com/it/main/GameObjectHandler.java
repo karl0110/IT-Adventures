@@ -40,8 +40,6 @@ public class GameObjectHandler {
 	}
 	
 	public void removeAllObjects(){
-		for(int i=0;i<object.size();i++){
-			removeObject(object.get(i));
-		}
+		object=new LinkedList<Tile>();
 	}
 }

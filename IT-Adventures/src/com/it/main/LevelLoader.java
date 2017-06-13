@@ -31,7 +31,7 @@ public class LevelLoader {
 				int blue = (pixel) & 0xff;
 				
 				if(red==255 && green==0 && blue==0){
-					player=new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime,game);
+					player=new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime);
 				}
 			}
 			

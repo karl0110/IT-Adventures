@@ -6,10 +6,12 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener {
 
-	private Menu menu;
+	private Menu mainMenu;
+	private Game game;
 	
-	public MouseInput(Menu menu){
-		this.menu=menu;
+	public MouseInput(Menu mainMenu,Game game){
+		this.mainMenu=mainMenu;
+		this.game=game;
 	}
 	
 	@Override
@@ -24,7 +26,7 @@ public class MouseInput implements MouseListener {
 			Rectangle exitButton =new Rectangle(0,Game.HEIGHT/2+Game.HEIGHT/4,Game.WIDTH,Game.HEIGHT/4);
 			if(playButton.intersects(mouse)){
 				
-				menu.startPlayAnimation();
+				mainMenu.startPlayAnimation();
 				
 				
 			}
@@ -39,6 +41,18 @@ public class MouseInput implements MouseListener {
 				Game.State=Game.STATE.MainMenu;
 			}
 			if(newGame.intersects(mouse)){
+				Game.State=Game.STATE.Game;
+			}
+		}
+		else if(Game.State==Game.STATE.GameOver){
+			Rectangle tryAgain =new Rectangle(Game.WIDTH/4,Game.HEIGHT/4,Game.WIDTH/2,Game.HEIGHT/4);
+			Rectangle mainMenu = new Rectangle(Game.WIDTH/4,Game.HEIGHT/2,Game.WIDTH/2,Game.HEIGHT/4);
+			
+			if(mainMenu.intersects(mouse)){
+				Game.State=Game.STATE.MainMenu;
+			}
+			if(tryAgain.intersects(mouse)){
+				game.loadNewLevel();
 				Game.State=Game.STATE.Game;
 			}
 		}

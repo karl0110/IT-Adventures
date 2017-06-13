@@ -3,6 +3,7 @@ package com.it.main;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 /*
  * Author: Jaime Hall(angeblich)
@@ -26,17 +27,21 @@ public class Game implements Runnable{
 	private GameObjectHandler handler;
 	private Camera camera;
 	private Background background;
+	private LevelLoader levelLoader;
+	private BufferedImage gameOverImage;
 	
 	private int level;
 	private CharacterType character;
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
-		MainMenu,PlayMenu,Game
+		MainMenu,PlayMenu,Game,GameOver
 	};
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
 	
 	public Game(){
 		window=new Window(TITLE,WIDTH,HEIGHT);
+		level=1;
+		character=CharacterType.Jaime;
 		start();//Ruft die Methode start() zum initialisieren des Threads auf.
 	}
 	
@@ -88,10 +93,11 @@ public class Game implements Runnable{
 		handler=new GameObjectHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
 		window.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new Menu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
-		window.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		LevelLoader levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
-		camera = levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
+		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
+		camera = levelLoader.loadLevel(character.name(), level);//Lädt das erste Level vom "Jaime" Charakter
 		background= new Background(BackgroundType.Night, imageLoader);
+		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 	
 		
 		
@@ -143,6 +149,12 @@ public class Game implements Runnable{
 			handler.render(g);////Wenn der Zustand des Spieles das Spiel selber ist, werden die Grafiken von allen Spielobjekten über den GameObjectHandler geladen.
 			g2d.translate(-camera.getX(), -camera.getY());
 		}
+		else if(Game.State==Game.STATE.GameOver){
+			background.render(g);
+			handler.render(g);
+			g.drawImage(gameOverImage, 0,0,gameOverImage.getWidth(),gameOverImage.getHeight(), null);
+			
+		}
 		
 		
 		///////////////////Ende des Bereiches.
@@ -185,6 +197,14 @@ public class Game implements Runnable{
 	
 	public void nextLevel(){
 		level++;
+	}
+	
+	public void changeCharacter(CharacterType newCharacter){
+		character=newCharacter;
+	}
+	
+	public void loadNewLevel(){
+		camera=levelLoader.loadLevel(character.name(), level);
 	}
 	
 }
