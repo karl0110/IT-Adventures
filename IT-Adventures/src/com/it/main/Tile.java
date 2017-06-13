@@ -10,6 +10,7 @@ public abstract class Tile {
 	protected boolean falling,jumping,passable;
 	protected BufferedImage image;
 	protected ObjectType type;
+	protected BufferedImageLoader imageLoader;
 	
 	public Tile(float x,float y,BufferedImageLoader imageLoader,ObjectType type){
 		this.x=x;
@@ -18,6 +19,7 @@ public abstract class Tile {
 		this.width=type.width;
 		this.height=type.height;
 		this.type = type;
+		this.imageLoader=imageLoader;
 	}
 	
 	public ObjectType getType() {

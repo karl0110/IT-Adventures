@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Block extends GameObject{
+public class Block extends TileObject{
 
 	public Block(float x,float y,BufferedImageLoader imageLoader, ObjectType type,Player player) {
 		super(x,y,imageLoader, type,player);

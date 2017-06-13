@@ -6,10 +6,12 @@ public class LevelLoader {
 
 	BufferedImageLoader imageLoader;
 	GameObjectHandler handler;
+	Game game;
 	
-	public LevelLoader(BufferedImageLoader imageLoader,GameObjectHandler handler){
+	public LevelLoader(BufferedImageLoader imageLoader,GameObjectHandler handler,Game game){
 		this.imageLoader=imageLoader;
 		this.handler=handler;
+		this.game=game;
 	}
 	
 	public Camera loadLevel(String characterName,int level){
@@ -29,7 +31,7 @@ public class LevelLoader {
 				int blue = (pixel) & 0xff;
 				
 				if(red==255 && green==0 && blue==0){
-					player=new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime);
+					player=new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime,game);
 				}
 			}
 			

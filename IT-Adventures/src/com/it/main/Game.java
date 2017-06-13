@@ -24,10 +24,11 @@ public class Game implements Runnable{
 	private Menu menu;
 	private BufferedImageLoader imageLoader;
 	private GameObjectHandler handler;
-	private Sound sound;
 	private Camera camera;
 	private Background background;
 	
+	private int level;
+	private CharacterType character;
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game
 	};
@@ -83,13 +84,12 @@ public class Game implements Runnable{
 	 * Diese Methode Initialisiert diverse Objekte, welche für das Programm notwendig sind.
 	 */
 	private void init(){
-		sound = new Sound();//Sound Klasse ist für Wiedergabe von diversen Geräuschen da.
 		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
 		handler=new GameObjectHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
 		window.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		menu=new Menu(imageLoader,this,sound);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
+		menu=new Menu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		window.addMouseListener(new MouseInput(menu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		LevelLoader levelLoader = new LevelLoader(imageLoader, handler);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
+		LevelLoader levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		camera = levelLoader.loadLevel("jaime", 1);//Lädt das erste Level vom "Jaime" Charakter
 		background= new Background(BackgroundType.Night, imageLoader);
 	
@@ -182,4 +182,9 @@ public class Game implements Runnable{
 		}
 		System.exit(1);
 	}
+	
+	public void nextLevel(){
+		level++;
+	}
+	
 }

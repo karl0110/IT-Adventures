@@ -5,20 +5,25 @@ import java.awt.Rectangle;
 
 
 
-public class Player extends Tile {
+public class Player extends TileEntity{
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
 	private GameObjectHandler handler;
+	private float health;
+	public  final static float MAXHEALTH=100;
+	private Game game;
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType,Game game) {
 		super(x, y, imageLoader, type);
 		this.handler=handler;
+		this.game=game;
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
 		rightWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_right_ss.png", 6, width, height,characterType.ssCol),15);
 		leftWalkAnimator=new Animator(imageLoader.getImageSet("/images/character_walk_left_ss.png", 6, width, height,characterType.ssCol),15);
 		rightJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_right_ss.png", 3, width, height,characterType.ssCol),15);
 		leftJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_left_ss.png", 3, width, height,characterType.ssCol),15);
+		health=MAXHEALTH;
 	}
 
 	public void render(Graphics g) {
@@ -78,7 +83,12 @@ public class Player extends Tile {
 			}
 		}
 		
-		
+		if(health==0){
+			
+			Menu gameOverMenu = new Menu(imageLoader, game);
+			
+			handler.removeObject(this);
+		}
 		
 	}
 	
