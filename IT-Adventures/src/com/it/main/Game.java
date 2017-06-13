@@ -24,7 +24,7 @@ public class Game implements Runnable{
 	private Thread thread;
 	private Menu menu;
 	private BufferedImageLoader imageLoader;
-	private GameObjectHandler handler;
+	private TileHandler handler;
 	private Camera camera;
 	private Background background;
 	private LevelLoader levelLoader;
@@ -90,7 +90,7 @@ public class Game implements Runnable{
 	 */
 	private void init(){
 		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
-		handler=new GameObjectHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
+		handler=new TileHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
 		window.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new Menu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.

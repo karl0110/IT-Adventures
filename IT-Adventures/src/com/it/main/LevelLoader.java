@@ -5,10 +5,10 @@ import java.awt.image.BufferedImage;
 public class LevelLoader {
 
 	BufferedImageLoader imageLoader;
-	GameObjectHandler handler;
+	TileHandler handler;
 	Game game;
 	
-	public LevelLoader(BufferedImageLoader imageLoader,GameObjectHandler handler,Game game){
+	public LevelLoader(BufferedImageLoader imageLoader,TileHandler handler,Game game){
 		this.imageLoader=imageLoader;
 		this.handler=handler;
 		this.game=game;

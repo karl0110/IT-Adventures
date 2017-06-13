@@ -9,9 +9,9 @@ import java.awt.event.KeyEvent;
  */
 public class KeyInput extends KeyAdapter{
 	
-	private GameObjectHandler handler;
+	private TileHandler handler;
 	
-	public KeyInput(GameObjectHandler handler) {
+	public KeyInput(TileHandler handler) {
 		this.handler = handler;
 		}
 

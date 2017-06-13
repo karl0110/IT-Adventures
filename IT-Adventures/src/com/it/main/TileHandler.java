@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 
 
-public class GameObjectHandler {
+public class TileHandler {
 
 	public LinkedList<Tile> object = new LinkedList<Tile>();
 	

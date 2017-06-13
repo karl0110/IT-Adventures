@@ -8,11 +8,11 @@ import java.awt.Rectangle;
 public class Player extends TileEntity{
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
-	private GameObjectHandler handler;
+	private TileHandler handler;
 	private float health;
 	public  final static float MAXHEALTH=100;
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, GameObjectHandler handler, ObjectType type,CharacterType characterType) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, ObjectType type,CharacterType characterType) {
 		super(x, y, imageLoader, type);
 		this.handler=handler;
 		falling=true;
