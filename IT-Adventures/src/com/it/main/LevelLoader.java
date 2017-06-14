@@ -47,6 +47,7 @@ public class LevelLoader {
 				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*32, yy*32, imageLoader, TileType.Dirt,dirt,player));
 				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Grass,gras,player));
 				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Stone,stone,player));
+				else if(red==0&&green==0&&blue==255)handler.addObject(new Enemy(xx*32,yy*32,imageLoader,TileType.Enemy,handler,EnemyType.Virus));
 			}
 		}
 		return new Camera(0,0,player);

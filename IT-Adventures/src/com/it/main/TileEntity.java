@@ -51,19 +51,19 @@ public abstract class TileEntity extends Tile{
 	
 	
 	public Rectangle getUpperBounds() {
-		return new Rectangle((int) x +5, (int) y, (int) width -10, (int) height/2);
+		return new Rectangle((int) x +8, (int) y, (int) width -16, (int) height/2);
 	}
 
 	public Rectangle getBottomBounds() {
-		return new Rectangle((int) x+5, (int) y+(int)(height/2), (int) width -10, (int)height/2 );
+		return new Rectangle((int) x+8, (int) y+(int)(height/2), (int) width -16, (int)height/2 );
 	}
 
 	public Rectangle getLeftBounds() {
-		return new Rectangle((int) x, (int) y+2, (int) 2, (int)height-4 );
+		return new Rectangle((int) x, (int) y+2, (int) 5, (int)height-4 );
 	}
 
 
 	public Rectangle getRightBounds() {
-		return new Rectangle((int) x+((int)width-2) , (int) y+2, 2, (int)height-4 );
+		return new Rectangle((int) x+((int)width-5) , (int) y+2, 5, (int)height-4 );
 	}
 }
