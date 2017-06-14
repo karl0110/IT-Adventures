@@ -15,7 +15,7 @@ public class TileHandler {
 			Tile tempObject = object.get(i);
 
 			
-			if(tempObject.getType()==ObjectType.Player){
+			if(tempObject.getType()==TileType.Player){
 				tempObject.tick();
 			}
 			

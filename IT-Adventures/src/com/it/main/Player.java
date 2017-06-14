@@ -1,7 +1,6 @@
 package com.it.main;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 
 
@@ -11,7 +10,7 @@ public class Player extends TileEntity{
 	private float health;
 	public  final static float MAXHEALTH=100;
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, ObjectType type,CharacterType characterType) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, TileType type,CharacterType characterType) {
 		super(x, y, imageLoader, type,handler);
 		this.handler=handler;
 		falling=true;
@@ -95,23 +94,6 @@ public class Player extends TileEntity{
 	/**
 	 *  Vier Kollisionsrechtecke für den Spieler (Oben, Unten, Links und Rechts) werden erstellt
 	 */
-
-	public Rectangle getUpperBounds() {
-		return new Rectangle((int) x +5, (int) y, (int) width -10, (int) height/2);
-	}
-
-	public Rectangle getBottomBounds() {
-		return new Rectangle((int) x+5, (int) y+(int)(height/2), (int) width -10, (int)height/2 );
-	}
-
-	public Rectangle getLeftBounds() {
-		return new Rectangle((int) x, (int) y+2, (int) 2, (int)height-4 );
-	}
-
-
-	public Rectangle getRightBounds() {
-		return new Rectangle((int) x+((int)width-2) , (int) y+2, 2, (int)height-4 );
-	}
 
 	@Override
 	public void leftCollisionReaction(Tile tempObject) {

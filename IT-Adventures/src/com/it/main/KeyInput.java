@@ -25,7 +25,7 @@ public class KeyInput extends KeyAdapter{
 		for(int i=0;i<handler.object.size();i++){
 			Tile tempObject=handler.object.get(i);
 			
-			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
+			if(Game.State==Game.STATE.Game&&tempObject.getType()==TileType.Player){
 			
 				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A )tempObject.setVelX(-3);
 			
@@ -50,7 +50,7 @@ public class KeyInput extends KeyAdapter{
 		for(int i=0;i<handler.object.size();i++){
 			Tile tempObject=handler.object.get(i);
 			
-			if(Game.State==Game.STATE.Game&&tempObject.getType()==ObjectType.Player){
+			if(Game.State==Game.STATE.Game&&tempObject.getType()==TileType.Player){
 				
 				if(key==KeyEvent.VK_LEFT || key==KeyEvent.VK_A)tempObject.setVelX(0);
 			

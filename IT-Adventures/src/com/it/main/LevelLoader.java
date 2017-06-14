@@ -31,7 +31,7 @@ public class LevelLoader {
 				int blue = (pixel) & 0xff;
 				
 				if(red==255 && green==0 && blue==0){
-					player=new Player(xx*32,yy*32,imageLoader,handler,ObjectType.Player,CharacterType.Jaime);
+					player=new Player(xx*32,yy*32,imageLoader,handler,TileType.Player,CharacterType.Jaime);
 				}
 			}
 			
@@ -44,9 +44,9 @@ public class LevelLoader {
 				int green = (pixel>>8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*32, yy*32, imageLoader, ObjectType.Dirt,dirt,player));
-				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,ObjectType.Grass,gras,player));
-				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,ObjectType.Stone,stone,player));
+				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*32, yy*32, imageLoader, TileType.Dirt,dirt,player));
+				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Grass,gras,player));
+				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Stone,stone,player));
 			}
 		}
 		return new Camera(0,0,player);

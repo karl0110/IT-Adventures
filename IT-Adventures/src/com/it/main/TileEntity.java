@@ -7,7 +7,7 @@ public abstract class TileEntity extends Tile{
 
 	protected TileHandler handler;
 	
-	public TileEntity(float x, float y, BufferedImageLoader imageLoader, ObjectType type,TileHandler handler) {
+	public TileEntity(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler) {
 		super(x, y, imageLoader, type);
 		this.handler=handler;
 	}
@@ -50,8 +50,20 @@ public abstract class TileEntity extends Tile{
 	public abstract void tick();
 	
 	
-	public abstract Rectangle getUpperBounds();
-	public abstract Rectangle getBottomBounds();
-	public abstract Rectangle getLeftBounds();
-	public abstract Rectangle getRightBounds();
+	public Rectangle getUpperBounds() {
+		return new Rectangle((int) x +5, (int) y, (int) width -10, (int) height/2);
+	}
+
+	public Rectangle getBottomBounds() {
+		return new Rectangle((int) x+5, (int) y+(int)(height/2), (int) width -10, (int)height/2 );
+	}
+
+	public Rectangle getLeftBounds() {
+		return new Rectangle((int) x, (int) y+2, (int) 2, (int)height-4 );
+	}
+
+
+	public Rectangle getRightBounds() {
+		return new Rectangle((int) x+((int)width-2) , (int) y+2, 2, (int)height-4 );
+	}
 }

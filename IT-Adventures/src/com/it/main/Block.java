@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 
 public class Block extends TileObject{
 
-	public Block(float x,float y,BufferedImageLoader imageLoader, ObjectType type,Player player) {
+	public Block(float x,float y,BufferedImageLoader imageLoader, TileType type,Player player) {
 		super(x,y,imageLoader, type,player);
 		image = imageLoader.loadImageFromSS(type.imagePath,type.ssCol,type.ssRow,(int)width,(int)height);
 		
 	}
 	
-	public Block(float x,float y,BufferedImageLoader imageLoader,ObjectType type,BufferedImage image,Player player){
+	public Block(float x,float y,BufferedImageLoader imageLoader,TileType type,BufferedImage image,Player player){
 		super(x,y,imageLoader, type,player);
 		this.image=image;
 	}

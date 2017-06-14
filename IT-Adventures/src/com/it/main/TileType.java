@@ -1,13 +1,13 @@
 package com.it.main;
 
-public enum ObjectType {
+public enum TileType {
 	
-	Player("/images/character_sprite_sheet.png",true,false,32,64,1,2),
+	Player("",true,false,32,64,0,0),
+	Enemy("",true,false,32,64,0,0),
 	Stone("/images/block_sprite_sheet.png",false,false,32,32,3,1),
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),
 	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1),
-	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,2,1);
-	
+	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,4,1);
 	
 	
 	String imagePath;
@@ -15,13 +15,10 @@ public enum ObjectType {
 	float width,height;
 	int ssCol,ssRow;
 	
-	private ObjectType(String imagePath,boolean affectedByGravity,boolean passable,float width,float height,int ssCol,int ssRow){
-		this.imagePath=imagePath;
+	TileType(String imagePath,boolean affectedByGravity,boolean passable,float width,float height,int ssCol,int ssRow){
 		this.affectedByGravity=affectedByGravity;
 		this.passable=passable;
 		this.width=width;
 		this.height=height;
-		this.ssCol=ssCol;
-		this.ssRow=ssRow;
 	}
 }

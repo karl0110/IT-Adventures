@@ -9,10 +9,10 @@ public abstract class Tile {
 	protected float x,y,velX,velY,width,height;
 	protected boolean falling,jumping,passable;
 	protected BufferedImage image;
-	protected ObjectType type;
+	protected TileType type;
 	protected BufferedImageLoader imageLoader;
 	
-	public Tile(float x,float y,BufferedImageLoader imageLoader,ObjectType type){
+	public Tile(float x,float y,BufferedImageLoader imageLoader,TileType type){
 		this.x=x;
 		this.y=y;
 		this.passable=type.passable;
@@ -22,11 +22,11 @@ public abstract class Tile {
 		this.imageLoader=imageLoader;
 	}
 	
-	public ObjectType getType() {
+	public TileType getType() {
 		return type;
 	}
 
-	public void setType(ObjectType type) {
+	public void setType(TileType type) {
 		this.type = type;
 	}
 

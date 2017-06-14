@@ -10,7 +10,7 @@ public abstract class TileObject extends Tile {
 	
 	
 	
-	public TileObject(float x,float y,BufferedImageLoader imageLoader,ObjectType type,Player player) {
+	public TileObject(float x,float y,BufferedImageLoader imageLoader,TileType type,Player player) {
 		super(x,y,imageLoader,type);
 		this.player=player;
 		
