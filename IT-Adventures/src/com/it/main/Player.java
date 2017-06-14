@@ -8,12 +8,11 @@ import java.awt.Rectangle;
 public class Player extends TileEntity{
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
-	private TileHandler handler;
 	private float health;
 	public  final static float MAXHEALTH=100;
 	
 	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, ObjectType type,CharacterType characterType) {
-		super(x, y, imageLoader, type);
+		super(x, y, imageLoader, type,handler);
 		this.handler=handler;
 		falling=true;
 		idleAnimator=new Animator(imageLoader.getImageSet("/images/character_idle_ss.png", 3, width, height,characterType.ssCol),15);
@@ -91,39 +90,7 @@ public class Player extends TileEntity{
 		
 	}
 	
-	private void collision(){
-		for(int i=0;i<handler.object.size();i++){
-			Tile tempObject=handler.object.get(i);
-			if(tempObject.isPassable()==false){
-				
-				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
-					y=(tempObject.getY()-(int)height);
-					falling = false;
-					if(jumping==true)jumping = false;
-					velY=0;
-				}
-				else{
-					falling =true;
-				}
-				
-				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
-					y=tempObject.getY()+tempObject.getHeight()+1;
-					velY=0;
-				}
-				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
-					x=tempObject.getX()+tempObject.getWidth()+1;
-					velX=0;	
-
-				}
-				if(getRightBounds().intersects(tempObject.getLeftBounds())) {
-					x=tempObject.getX()-(int)width-1;
-					velX=0;
-
-				}
-			}
-		}
-				
-	}
+	
 
 	/**
 	 *  Vier Kollisionsrechtecke für den Spieler (Oben, Unten, Links und Rechts) werden erstellt
@@ -144,6 +111,20 @@ public class Player extends TileEntity{
 
 	public Rectangle getRightBounds() {
 		return new Rectangle((int) x+((int)width-2) , (int) y+2, 2, (int)height-4 );
+	}
+
+	@Override
+	public void leftCollisionReaction(Tile tempObject) {
+		x=tempObject.getX()+tempObject.getWidth()+1;
+		velX=0;
+		
+	}
+
+	@Override
+	public void rightCollisionReaction(Tile tempObject) {
+		x=tempObject.getX()-(int)width-1;
+		velX=0;
+		
 	}
 
 }
