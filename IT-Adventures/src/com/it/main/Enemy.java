@@ -2,10 +2,9 @@ package com.it.main;
 
 import java.awt.Graphics;
 
-public class Enemy extends TileEntity{
+public class Enemy extends LivingTileEntity{
 
 	private float leftPatrolCoordinate,rightPatrolCoordinate;
-	private boolean isWalkingRight;
 	private Player player;
 	private int cooldown;
 	
@@ -15,9 +14,11 @@ public class Enemy extends TileEntity{
 		image=imageLoader.loadImage("/images/enemy1.png");
 		leftPatrolCoordinate=x;
 		rightPatrolCoordinate=x+600;
-		isWalkingRight=true;
+		facingRight=true;
 		this.player=player;
 		cooldown=0;
+		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this, player));
+		health=Player.MAXHEALTH;
 	}
 
 	@Override
@@ -37,12 +38,12 @@ public class Enemy extends TileEntity{
 			velY += 0.981f; // Y-Wert steigt immer (wird durch Kollision unterbrochen)
 		}	
 		
-		if(isWalkingRight==true){
+		if(facingRight==true){
 			if(x<rightPatrolCoordinate){
 				velX=2;
 			}
 			else{
-				isWalkingRight=false;
+				facingRight=false;
 			}
 		}
 		else{
@@ -50,18 +51,20 @@ public class Enemy extends TileEntity{
 				velX=-2;
 			}
 			else{
-				isWalkingRight=true;
+				facingRight=true;
 			}
 		}
 		
-		if(y==player.getY()&&cooldown==0){
-			if(x-player.getX()<400){
-				handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
-				cooldown=60;
-			}
-			else if(player.getX()-x<400){
-				handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, true, 1, 6));
-				cooldown=60;
+		if(y-player.getY()<20 || player.getY()-y<20){
+			if(cooldown==0){
+				if(x-player.getX()<400){
+					handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
+					cooldown=60;
+				}
+				else if(player.getX()-x<400){
+					handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, true, 1, 6));
+					cooldown=60;
+				}
 			}
 			
 		}
@@ -69,6 +72,8 @@ public class Enemy extends TileEntity{
 			cooldown--;
 		}
 		collision();
+		
+		healthBar.reloadCoordinates(x, y);
 	}
 
 

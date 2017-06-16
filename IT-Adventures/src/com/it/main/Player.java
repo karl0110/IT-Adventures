@@ -4,12 +4,13 @@ import java.awt.Graphics;
 
 
 
-public class Player extends TileEntity{
+public class Player extends LivingTileEntity{
 
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
-	private float health;
+	
 	public  final static float MAXHEALTH=100;
-	private boolean facingRight;
+	
+	
 	
 	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, TileType type,CharacterType characterType) {
 		super(x, y, imageLoader, type,handler);
@@ -21,6 +22,8 @@ public class Player extends TileEntity{
 		rightJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_right_ss.png", 3, width, height,characterType.ssCol),15);
 		leftJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_left_ss.png", 3, width, height,characterType.ssCol),15);
 		health=MAXHEALTH;
+		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this, this));
+		
 	}
 
 	public void render(Graphics g) {
@@ -61,6 +64,8 @@ public class Player extends TileEntity{
 		}
 		collision();
 		
+		
+		healthBar.reloadCoordinates(x, y);
 		
 		if(velX==0)idleAnimator.runAnimation();
 		else if(velX>0){
@@ -115,15 +120,6 @@ public class Player extends TileEntity{
 		velX=0;
 		
 	}
-	
-	public void addHealth(int healthToAdd){
-		health+=healthToAdd;
-		
-	}
-
-	public void removeHealth(int healthToRemove){
-		health-=healthToRemove;
-	}
 
 	public boolean isFacingRight() {
 		return facingRight;
@@ -149,9 +145,6 @@ public class Player extends TileEntity{
 		
 	}
 
-	public float getHealth(){
-		return health;
-	}
 	
 	
 	

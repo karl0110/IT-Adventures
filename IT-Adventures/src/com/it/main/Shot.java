@@ -24,8 +24,9 @@ public class Shot extends TileEntity {
 
 	@Override
 	public void leftCollisionReaction(Tile tempObject) {
-		if(tempObject.getType()==TileType.Player){
-			((Player) tempObject).removeHealth(damage);
+		if(tempObject.getType()==TileType.Player||tempObject.getType()==TileType.Enemy){
+			((LivingTileEntity) tempObject).removeHealth(damage);
+			handler.removeObject(this);
 		}
 		else{
 			handler.removeObject(this);
@@ -35,8 +36,8 @@ public class Shot extends TileEntity {
 
 	@Override
 	public void rightCollisionReaction(Tile tempObject) {
-		if(tempObject.getType()==TileType.Player){
-			((Player) tempObject).removeHealth(damage);
+		if(tempObject.getType()==TileType.Player||tempObject.getType()==TileType.Enemy){
+			((LivingTileEntity) tempObject).removeHealth(damage);
 		}
 		else{
 			handler.removeObject(this);

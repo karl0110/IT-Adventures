@@ -7,28 +7,34 @@ public class HealthBar extends TileObject {
 
 	private float health;
 	private float healthPixel;
-	private Player player;
+	private LivingTileEntity entity;
 	
-	public HealthBar(float x, float y, BufferedImageLoader imageLoader, TileType type, TileHandler handler,Player player) {
+	public HealthBar(float x, float y, BufferedImageLoader imageLoader, TileType type, TileHandler handler,LivingTileEntity entity,Player player) {
 		super(x, y, imageLoader, type,player);
-		
+		this.entity=entity;
 		
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.drawRect(0, Game.HEIGHT-(int)height, (int)width, (int)height);
+		g.drawRect((int)x, (int)y, (int)width, (int)height);
 		g.setColor(Color.green);
-		g.fillRect(0, Game.HEIGHT-(int)height, (int)healthPixel, (int)height);
+		g.fillRect((int)x+1, (int)y+1, (int)healthPixel-2, (int)height-2);
 		
 
 	}
 
 	@Override
 	public void tick() {
-		health= 60;
+		
+		health= entity.getHealth();
 		healthPixel=(health/Player.MAXHEALTH)*(int)width;
+	}
+	
+	public void reloadCoordinates(float entityX, float entityY){
+		x=entityX;
+		y=entityY-height-5;
 	}
 
 }
