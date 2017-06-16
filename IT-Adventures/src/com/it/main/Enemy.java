@@ -69,4 +69,20 @@ public class Enemy extends TileEntity{
 		
 	}
 
+	@Override
+	public void upperCollisionReaction(Tile tempObject) {
+		y=tempObject.getY()+tempObject.getHeight()+1;
+		velY=0;
+		
+	}
+
+	@Override
+	public void bottomCollisionReaction(Tile tempObject) {
+		y=(tempObject.getY()-(int)height);
+		falling = false;
+		if(jumping==true)jumping = false;
+		velY=0;
+		
+	}
+
 }

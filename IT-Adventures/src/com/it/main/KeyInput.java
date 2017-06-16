@@ -10,9 +10,11 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter{
 	
 	private TileHandler handler;
+	private BufferedImageLoader imageLoader;
 	
-	public KeyInput(TileHandler handler) {
+	public KeyInput(TileHandler handler,BufferedImageLoader imageLoader) {
 		this.handler = handler;
+		this.imageLoader=imageLoader;
 		}
 
 	public void keyPressed(KeyEvent e){
@@ -37,7 +39,21 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setJumping(true);
 				}
 				
-				
+				if(key==KeyEvent.VK_ENTER){
+					int shotX;
+					int shotY;
+					boolean facingRight;
+					if(((Player)tempObject).isFacingRight()){
+						shotX=(int) (tempObject.getX()+tempObject.getWidth());
+						shotY=(int) (tempObject.getY()+tempObject.getHeight()/2);
+					}
+					else{
+						shotX=(int) tempObject.getX();
+						shotY=(int) (tempObject.getY()+tempObject.getHeight()/2);
+					}
+					facingRight=((Player)tempObject).isFacingRight();
+					handler.addObject(new Shot(shotX, shotY, imageLoader, TileType.Shot, handler, 600, 10, facingRight, 1, 6));
+				}
 			}
 			
 		}

@@ -9,6 +9,7 @@ public class Player extends TileEntity{
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
 	private float health;
 	public  final static float MAXHEALTH=100;
+	private boolean facingRight;
 	
 	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, TileType type,CharacterType characterType) {
 		super(x, y, imageLoader, type,handler);
@@ -87,6 +88,12 @@ public class Player extends TileEntity{
 			Game.State=Game.STATE.GameOver;
 		}
 		
+		if(velX>0){
+			facingRight=true;
+		}
+		else if(velX<0){
+			facingRight=false;
+		}
 	}
 	
 	
@@ -108,5 +115,39 @@ public class Player extends TileEntity{
 		velX=0;
 		
 	}
+	
+	public void addHealth(int healthToAdd){
+		health+=healthToAdd;
+		
+	}
 
+	public void removeHealth(int healthToRemove){
+		health-=healthToRemove;
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
+	}
+
+	@Override
+	public void upperCollisionReaction(Tile tempObject) {
+		y=tempObject.getY()+tempObject.getHeight()+1;
+		velY=0;
+		
+	}
+
+	@Override
+	public void bottomCollisionReaction(Tile tempObject) {
+		y=(tempObject.getY()-(int)height);
+		falling = false;
+		if(jumping==true)jumping = false;
+		velY=0;
+		
+	}
+	
+	
 }

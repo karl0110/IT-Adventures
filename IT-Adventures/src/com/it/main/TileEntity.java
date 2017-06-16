@@ -18,18 +18,14 @@ public abstract class TileEntity extends Tile{
 			if(tempObject.isPassable()==false){
 				
 				if(getBottomBounds().intersects(tempObject.getUpperBounds())) {
-					y=(tempObject.getY()-(int)height);
-					falling = false;
-					if(jumping==true)jumping = false;
-					velY=0;
+					bottomCollisionReaction(tempObject);
 				}
 				else{
 					falling =true;
 				}
 				
 				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
-					y=tempObject.getY()+tempObject.getHeight()+1;
-					velY=0;
+					upperCollisionReaction(tempObject);
 				}
 				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
 					leftCollisionReaction(tempObject);
@@ -44,6 +40,8 @@ public abstract class TileEntity extends Tile{
 	}
 	public abstract void leftCollisionReaction(Tile tempObject);
 	public abstract void rightCollisionReaction(Tile tempObject);
+	public abstract void upperCollisionReaction(Tile tempObject);
+	public abstract void bottomCollisionReaction(Tile tempObject);
 	
 	public abstract void render(Graphics g);
 	

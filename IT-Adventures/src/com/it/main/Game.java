@@ -91,7 +91,7 @@ public class Game implements Runnable{
 	private void init(){
 		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
 		handler=new TileHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
-		window.addKeyListener(new KeyInput(handler));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		window.addKeyListener(new KeyInput(handler,imageLoader));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new Menu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
@@ -152,7 +152,7 @@ public class Game implements Runnable{
 		else if(Game.State==Game.STATE.GameOver){
 			background.render(g);
 			handler.render(g);
-			g.drawImage(gameOverImage, 0,0,gameOverImage.getWidth(),gameOverImage.getHeight(), null);
+			g.drawImage(gameOverImage, 0,0,WIDTH,HEIGHT, null);
 			
 		}
 		

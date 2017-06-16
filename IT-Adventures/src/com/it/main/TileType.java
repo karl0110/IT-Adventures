@@ -4,6 +4,7 @@ public enum TileType {
 	
 	Player("",true,true,32,64,0,0),
 	Enemy("",true,true,32,64,0,0),
+	Shot("",false,false,32,32,0,0),
 	Stone("/images/block_sprite_sheet.png",false,false,32,32,3,1),
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),
 	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1),
