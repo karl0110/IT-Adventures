@@ -6,14 +6,16 @@ public class Enemy extends TileEntity{
 
 	private float leftPatrolCoordinate,rightPatrolCoordinate;
 	private boolean isWalkingRight;
+	private Player player;
 	
-	public Enemy(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler,EnemyType enemyType) {
+	public Enemy(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler,EnemyType enemyType,Player player) {
 		super(x, y, imageLoader, type,handler);
 		//image=imageLoader.loadImageFromSS("images/enemy_sprite_sheet.png",  enemyType.ssCol,enemyType.ssRow, 32, 32);
 		image=imageLoader.loadImage("/images/enemy1.png");
 		leftPatrolCoordinate=x;
 		rightPatrolCoordinate=x+600;
 		isWalkingRight=true;
+		this.player=player;
 	}
 
 	@Override
@@ -48,6 +50,13 @@ public class Enemy extends TileEntity{
 			else{
 				isWalkingRight=true;
 			}
+		}
+		
+		if(y==player.getY()){
+			if(x-player.getX^-()<400){
+				handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
+			}
+			
 		}
 		collision();
 	}
