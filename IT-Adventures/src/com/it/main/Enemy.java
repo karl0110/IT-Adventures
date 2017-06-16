@@ -7,6 +7,7 @@ public class Enemy extends TileEntity{
 	private float leftPatrolCoordinate,rightPatrolCoordinate;
 	private boolean isWalkingRight;
 	private Player player;
+	private int cooldown;
 	
 	public Enemy(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler,EnemyType enemyType,Player player) {
 		super(x, y, imageLoader, type,handler);
@@ -16,6 +17,7 @@ public class Enemy extends TileEntity{
 		rightPatrolCoordinate=x+600;
 		isWalkingRight=true;
 		this.player=player;
+		cooldown=0;
 	}
 
 	@Override
@@ -52,11 +54,19 @@ public class Enemy extends TileEntity{
 			}
 		}
 		
-		if(y==player.getY()){
-			if(x-player.getX^-()<400){
+		if(y==player.getY()&&cooldown==0){
+			if(x-player.getX()<400){
 				handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
+				cooldown=60;
+			}
+			else if(player.getX()-x<400){
+				handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, true, 1, 6));
+				cooldown=60;
 			}
 			
+		}
+		if(cooldown>0){
+			cooldown--;
 		}
 		collision();
 	}

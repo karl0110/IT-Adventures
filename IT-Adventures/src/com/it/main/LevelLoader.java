@@ -37,6 +37,7 @@ public class LevelLoader {
 			
 		}
 		handler.addObject(player);
+		handler.addObject(new HealthBar(0, Game.WIDTH-TileType.HealthBar.height, imageLoader, TileType.HealthBar, handler, player));
 		for(int xx=0;xx<levelImage.getWidth();xx++){
 			for(int yy=0;yy<levelImage.getHeight();yy++){
 				int pixel = levelImage.getRGB(xx, yy);

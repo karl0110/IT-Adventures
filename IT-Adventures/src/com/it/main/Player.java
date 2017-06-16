@@ -148,6 +148,11 @@ public class Player extends TileEntity{
 		velY=0;
 		
 	}
+
+	public float getHealth(){
+		return health;
+	}
+	
 	
 	
 }

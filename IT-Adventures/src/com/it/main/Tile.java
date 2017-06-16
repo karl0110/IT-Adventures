@@ -114,10 +114,21 @@ public abstract class Tile {
 	
 	public abstract void tick();
 	
-	
-	public abstract Rectangle getUpperBounds();
-	public abstract Rectangle getBottomBounds();
-	public abstract Rectangle getLeftBounds();
-	public abstract Rectangle getRightBounds();
-		
+
+	public Rectangle getUpperBounds() {
+		return new Rectangle((int) x +8, (int) y, (int) width -16, (int) height/2);
+	}
+
+	public Rectangle getBottomBounds() {
+		return new Rectangle((int) x+8, (int) y+(int)(height/2), (int) width -16, (int)height/2 );
+	}
+
+	public Rectangle getLeftBounds() {
+		return new Rectangle((int) x, (int) y+2, (int) 5, (int)height-4 );
+	}
+
+
+	public Rectangle getRightBounds() {
+		return new Rectangle((int) x+((int)width-5) , (int) y+2, 5, (int)height-4 );
+	}
 }
