@@ -45,7 +45,6 @@ public class Player extends LivingTileEntity{
 			}
 		}
 		else idleAnimator.renderAnimation(g, x, y, width, height);
-
 	}
 
 	/**

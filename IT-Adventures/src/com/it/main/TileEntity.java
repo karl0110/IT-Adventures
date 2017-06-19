@@ -23,9 +23,13 @@ public abstract class TileEntity extends Tile{
 					falling =true;
 				}
 				
+			
+			
 				if(getUpperBounds().intersects(tempObject.getBottomBounds())){
 					upperCollisionReaction(tempObject);
 				}
+				
+			}
 				if(getLeftBounds().intersects(tempObject.getRightBounds())) {
 					leftCollisionReaction(tempObject);
 
@@ -34,7 +38,7 @@ public abstract class TileEntity extends Tile{
 					rightCollisionReaction(tempObject);
 
 				}
-			}
+			
 		}
 	}
 	public abstract void leftCollisionReaction(Tile tempObject);

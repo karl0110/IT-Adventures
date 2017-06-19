@@ -156,7 +156,6 @@ public class Game implements Runnable{
 			
 		}
 		
-		
 		///////////////////Ende des Bereiches.
 		
 		g.dispose();//Graphics Objekt wird gelöscht, ist nicht gebraucht.

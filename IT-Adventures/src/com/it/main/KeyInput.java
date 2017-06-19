@@ -48,7 +48,7 @@ public class KeyInput extends KeyAdapter{
 						shotY=(int) (tempObject.getY()+tempObject.getHeight()/2);
 					}
 					else{
-						shotX=(int) tempObject.getX();
+						shotX= (int)( tempObject.getX()-TileType.Shot.width);
 						shotY=(int) (tempObject.getY()+tempObject.getHeight()/2);
 					}
 					facingRight=((Player)tempObject).isFacingRight();
