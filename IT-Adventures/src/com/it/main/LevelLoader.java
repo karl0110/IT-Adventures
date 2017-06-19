@@ -21,6 +21,7 @@ public class LevelLoader {
 		BufferedImage gras = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 2, 1, 32, 32);
 		BufferedImage dirt = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 1, 1, 32, 32);
 		BufferedImage stone = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 3, 1, 32, 32);
+		BufferedImage lava = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 5, 1, 32, 32);
 		Player player = null;
 		for(int xx=0;xx<levelImage.getWidth();xx++){
 			for(int yy=0;yy<levelImage.getHeight();yy++){
@@ -47,6 +48,7 @@ public class LevelLoader {
 				if(red==0 && green==0 && blue==0)handler.addObject(new Block(xx*32, yy*32, imageLoader, TileType.Dirt,dirt,player));
 				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Grass,gras,player));
 				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Stone,stone,player));
+				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Lava,lava,player));
 				else if(red==0&&green==0&&blue==255)handler.addObject(new Enemy(xx*32,yy*32,imageLoader,TileType.Enemy,handler,EnemyType.Virus,player));
 			}
 		}

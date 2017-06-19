@@ -9,6 +9,7 @@ public enum TileType {
 	Stone("/images/block_sprite_sheet.png",false,false,32,32,3,1),
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),
 	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1),
+	Lava("/images/block_sprite_sheet.png",false,false,32,32,5,1),
 	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,4,1);
 	
 	
