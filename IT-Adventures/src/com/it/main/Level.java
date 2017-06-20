@@ -1,5 +1,13 @@
 package com.it.main;
 
+/**
+ * @author JaimeHall, (KarlMatt)
+ * Dies ist eine Klasse, die die verschiedenen Level, den Charactertyp der geladen wird den Hintergrund festlegt und
+ * anderes für des Level wichtige festlegt.
+ * 
+ * Anhand der Farbe eines Pixels innerhalb eines Bildes werden die verschiedenen Blöcke erstellt und 
+ * eines Objektes des TileHandlers hinzugefügt. Außerdem wird ein neues Cameraobjekt erzeugt.
+ */
 import java.awt.image.BufferedImage;
 
 public class Level {
@@ -39,6 +47,10 @@ public class Level {
 		background=new Background(backgroundType, imageLoader);
 	}
 	
+	/**
+	 * erstelle die verschiedene Blöcke, den Player und füge diese dem TileHandler hinzu 
+	 * sowie erstelle ein Object der Cameraklasse.
+	 */
 	public void loadLevel(){
 		
 		handler.removeAllObjects();
