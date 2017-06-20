@@ -6,10 +6,12 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 /**
- * @author JaimeHall
+ * Die Klasse Game ist für die Spiel-Logik und den Zustand des Spieles zuständig.
+ * 
+ * @author Jaime Hall
  * @version 1.0
  * 
- * Die Klasse Game ist für die Spiel-Logik und den Zustand des Spieles zuständig.
+ * 
  */
 public class Game implements Runnable{
 

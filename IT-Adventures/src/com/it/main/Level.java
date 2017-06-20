@@ -2,8 +2,8 @@ package com.it.main;
 
 /**
  * @author KarlMatt
- * Dies ist eine Klasse, die die verschiedenen Level, den Charactertyp der geladen wird den Hintergrund festlegt und
- * anderes für des Level wichtige festlegt..
+ * Dies ist eine Klasse, die die verschiedenen Level, den Charaktertyp der geladen wird den Hintergrund festlegt und
+ * anderes für das Level wichtige festlegt..
  * 
  * Dazu wird geprüft, welche BufferedImages geladen werden und diese werden dann dem TileHandler hinzugefügt.
  * Außerdem wird ein neues Cameraobjekt erzeugt.
