@@ -79,9 +79,9 @@ public class Level {
 				else if(red==0&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Grass,gras,player));
 				else if(red==99&&green==99&&blue==99)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Stone,stone,player));
 				else if(red==255&&green==255&&blue==0)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Lava,lava,player));
-				else if(red==208&&green==246&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Ice,ice,player));	
-				else if(red==95&&green==246&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.IceBottom,iceBottom,player));	
-				else if(red==0&&green==246&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.IceTop,iceTop,player));
+				else if(red==200&&green==245&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Ice,ice,player));	
+				else if(red==95&&green==245&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.IceBottom,iceBottom,player));	
+				else if(red==0&&green==245&&blue==245)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.IceTop,iceTop,player));
 				else if(red==39&&green==63&&blue==39)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Brick,brick,player));	
 				else if(red==0&&green==0&&blue==255)handler.addObject(new Enemy(xx*32,yy*32,imageLoader,TileType.Enemy,handler,EnemyType.Virus,player));
 				else if(red==17&&green==0&&blue==119)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.USB,usb,player));
