@@ -110,6 +110,7 @@ public class Player extends LivingTileEntity{
 	public void leftCollisionReaction(Tile tempObject) {
 		x=tempObject.getX()+tempObject.getWidth()+1;
 		velX=0;
+		if (tempObject.getType()==TileType.Lava) {health=0;}
 		
 	}
 
@@ -117,6 +118,7 @@ public class Player extends LivingTileEntity{
 	public void rightCollisionReaction(Tile tempObject) {
 		x=tempObject.getX()-(int)width-1;
 		velX=0;
+		if (tempObject.getType()==TileType.Lava) {health=0;}
 		
 	}
 
@@ -132,6 +134,7 @@ public class Player extends LivingTileEntity{
 	public void upperCollisionReaction(Tile tempObject) {
 		y=tempObject.getY()+tempObject.getHeight()+1;
 		velY=0;
+		if (tempObject.getType()==TileType.Lava) {health=0;}
 		
 	}
 
@@ -141,6 +144,7 @@ public class Player extends LivingTileEntity{
 		falling = false;
 		if(jumping==true)jumping = false;
 		velY=0;
+		if (tempObject.getType()==TileType.Lava) {health=0;}
 		
 	}
 
