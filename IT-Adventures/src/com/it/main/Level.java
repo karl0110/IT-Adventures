@@ -1,7 +1,7 @@
 package com.it.main;
 
 /**
- * @author KarlMatt
+ * @author JaimeHall, (KarlMatt)
  * Dies ist eine Klasse, die die verschiedenen Level, den Charactertyp der geladen wird den Hintergrund festlegt und
  * anderes für des Level wichtige festlegt.
  * 
