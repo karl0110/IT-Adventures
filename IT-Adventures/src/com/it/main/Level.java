@@ -1,12 +1,18 @@
 package com.it.main;
 
 /**
+<<<<<<< HEAD
  * @author KarlMatt
  * Dies ist eine Klasse, die die verschiedenen Level, den Charaktertyp der geladen wird den Hintergrund festlegt und
  * anderes für das Level wichtige festlegt..
+=======
+ * @author JaimeHall, (KarlMatt)
+ * Dies ist eine Klasse, die die verschiedenen Level, den Charactertyp der geladen wird den Hintergrund festlegt und
+ * anderes für des Level wichtige festlegt.
+>>>>>>> branch 'master' of https://github.com/karl0110/IT-Adventures
  * 
- * Dazu wird geprüft, welche BufferedImages geladen werden und diese werden dann dem TileHandler hinzugefügt.
- * Außerdem wird ein neues Cameraobjekt erzeugt.
+ * Anhand der Farbe eines Pixels innerhalb eines Bildes werden die verschiedenen Blöcke erstellt und 
+ * eines Objektes des TileHandlers hinzugefügt. Außerdem wird ein neues Cameraobjekt erzeugt.
  */
 import java.awt.image.BufferedImage;
 
