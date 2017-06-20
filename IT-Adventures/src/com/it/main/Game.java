@@ -94,10 +94,10 @@ public class Game implements Runnable{
 		menu=new MainMenu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		
 		levels=new Level[4][10];
-		levels[0][0]=new Level(imageLoader, handler,this,true,0,2);
+		levels[0][0]=new Level(imageLoader, handler,this,true,0,0);
 		levels[0][0].loadLevel();
 		
-		characterMenu=new CharacterMenu(imageLoader);
+		characterMenu=new CharacterMenu(imageLoader,this);
 		window.addMouseListener(new MouseInput(menu,this,characterMenu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		
@@ -222,6 +222,14 @@ public class Game implements Runnable{
 
 	public void setCharacter(CharacterType character) {
 		this.character = character;
+	}
+
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
 	}
 	
 	
