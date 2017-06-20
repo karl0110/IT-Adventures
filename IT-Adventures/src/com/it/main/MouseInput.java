@@ -6,10 +6,10 @@ import java.awt.event.MouseListener;
 
 public class MouseInput implements MouseListener {
 
-	private Menu mainMenu;
+	private MainMenu mainMenu;
 	private Game game;
 	
-	public MouseInput(Menu mainMenu,Game game){
+	public MouseInput(MainMenu mainMenu,Game game){
 		this.mainMenu=mainMenu;
 		this.game=game;
 	}

@@ -3,14 +3,14 @@ package com.it.main;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class Menu {
+public class MainMenu {
 
 	private BufferedImage mainMenuBackground, playMenuBackground;
 	private boolean animatingPlay=false;
 	private float x,y=0;
 
 
-	public Menu(BufferedImageLoader imageLoader, Game game) {
+	public MainMenu(BufferedImageLoader imageLoader, Game game) {
 		mainMenuBackground = imageLoader.loadImage("/images/mainMenuBackground.png");
 		playMenuBackground = imageLoader.loadImage("/images/play_Background.png");
 		

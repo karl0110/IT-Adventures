@@ -22,7 +22,7 @@ public class Game implements Runnable{
 	
 	private Window window;
 	private Thread thread;
-	private Menu menu;
+	private MainMenu menu;
 	private BufferedImageLoader imageLoader;
 	private TileHandler handler;
 	private Camera camera;
@@ -92,13 +92,12 @@ public class Game implements Runnable{
 		imageLoader=new BufferedImageLoader();//Die BufferedImageLoader Klasse ist da um Bilder zu laden.
 		handler=new TileHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
 		window.addKeyListener(new KeyInput(handler,imageLoader));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		menu=new Menu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
+		menu=new MainMenu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		camera = levelLoader.loadLevel(character.name(), level);//Lädt das erste Level vom "Jaime" Charakter
 		background= new Background(BackgroundType.Night, imageLoader);
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
-	
 		
 		
 	}
