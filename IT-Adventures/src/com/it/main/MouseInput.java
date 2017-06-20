@@ -44,7 +44,7 @@ public class MouseInput implements MouseListener {
 				Game.State = Game.STATE.CharacterMenu;
 			}
 			if (newGame.intersects(mouse)) {
-				Game.State = Game.STATE.Game;
+				Game.State = Game.STATE.Story;
 			}
 		} else if (Game.State == Game.STATE.GameOver) {
 			Rectangle tryAgain = new Rectangle(Game.WIDTH / 4, Game.HEIGHT / 4, Game.WIDTH / 2, Game.HEIGHT / 4);
@@ -108,6 +108,12 @@ public class MouseInput implements MouseListener {
 //				if(level7.intersects(mouse)){
 //					characterMenu.setSelectedLevel(7);
 //				}
+			}
+		}
+		else if(Game.State==Game.STATE.Story){
+			Rectangle continueButton = new Rectangle(0,0,Game.WIDTH,Game.HEIGHT);
+			if(continueButton.intersects(mouse)){
+				Game.State=Game.STATE.Game;
 			}
 		}
 	}
