@@ -1,8 +1,15 @@
 package com.it.main;
 
 import java.awt.Graphics;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+/**
+ * 
+ * @author Karl Mattes, Vincent Wiechmann
+ *
+ */
 
 public class Block extends TileObject{
 
