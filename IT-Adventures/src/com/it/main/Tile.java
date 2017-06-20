@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public abstract class Tile {
 
 	protected float x,y,velX,velY,width,height;
-	protected boolean falling,jumping,passable;
+	protected boolean falling,jumping,passable,isTileEntity;
 	protected BufferedImage image;
 	protected TileType type;
 	protected BufferedImageLoader imageLoader;
@@ -110,9 +110,19 @@ public abstract class Tile {
 		this.image = image;
 	}
 
+	
+	
+	public boolean isTileEntity() {
+		return isTileEntity;
+	}
+
+	public void setLivingTileEntity(boolean isTileEntity) {
+		this.isTileEntity = isTileEntity;
+	}
+
 	public abstract void render(Graphics g);
 	
-	public abstract void tick();
+	
 	
 
 	public Rectangle getUpperBounds() {

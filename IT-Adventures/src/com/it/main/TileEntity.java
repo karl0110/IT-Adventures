@@ -9,6 +9,7 @@ public abstract class TileEntity extends Tile{
 	public TileEntity(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler) {
 		super(x, y, imageLoader, type);
 		this.handler=handler;
+		isTileEntity=true;
 	}
 
 	protected void collision(){

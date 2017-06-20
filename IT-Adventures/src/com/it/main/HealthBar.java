@@ -3,14 +3,14 @@ package com.it.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class HealthBar extends TileObject {
+public class HealthBar extends TileEntity {
 
 	private float health;
 	private float healthPixel;
 	private LivingTileEntity entity;
 	
-	public HealthBar(float x, float y, BufferedImageLoader imageLoader, TileType type, TileHandler handler,LivingTileEntity entity,Player player) {
-		super(x, y, imageLoader, type,player);
+	public HealthBar(float x, float y, BufferedImageLoader imageLoader, TileType type, TileHandler handler,LivingTileEntity entity) {
+		super(x, y, imageLoader, type,handler);
 		this.entity=entity;
 		
 	}
@@ -36,5 +36,30 @@ public class HealthBar extends TileObject {
 		x=entityX;
 		y=entityY-height-5;
 	}
+
+	@Override
+	public void leftCollisionReaction(Tile tempObject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rightCollisionReaction(Tile tempObject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void upperCollisionReaction(Tile tempObject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void bottomCollisionReaction(Tile tempObject) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }

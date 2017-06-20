@@ -17,7 +17,7 @@ public class Enemy extends LivingTileEntity{
 		facingRight=true;
 		this.player=player;
 		cooldown=0;
-		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this, player));
+		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this));
 		health=Player.MAXHEALTH;
 	}
 

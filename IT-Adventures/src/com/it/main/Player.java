@@ -22,7 +22,7 @@ public class Player extends LivingTileEntity{
 		rightJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_right_ss.png", 3, width, height,characterType.ssCol),15);
 		leftJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_left_ss.png", 3, width, height,characterType.ssCol),15);
 		health=MAXHEALTH;
-		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this, this));
+		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this));
 		
 	}
 

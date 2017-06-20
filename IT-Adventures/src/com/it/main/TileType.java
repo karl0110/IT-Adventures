@@ -10,10 +10,10 @@ public enum TileType {
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),
 	Grass("/images/block_sprite_sheet.png",false,false,32,32,2,1),
 	Lava("/images/block_sprite_sheet.png",true,false,32,32,5,1),
-	Eis("/images/block_sprite_sheet.png",false,false,32,32,8,1),
-	EisUnten("/images/block_sprite_sheet.png",false,false,32,32,6,1),
-	EisOben("/images/block_sprite_sheet.png",false,false,32,32,7,1),
-	Burg("/images/block_sprite_sheet.png",false,false,32,32,9,1),
+	Ice("/images/block_sprite_sheet.png",false,false,32,32,8,1),
+	IceBottom("/images/block_sprite_sheet.png",false,false,32,32,6,1),
+	IceTop("/images/block_sprite_sheet.png",false,false,32,32,7,1),
+	Brick("/images/block_sprite_sheet.png",false,false,32,32,9,1),
 	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,4,1);
 	
 	

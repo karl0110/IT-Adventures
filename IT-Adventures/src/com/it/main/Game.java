@@ -45,7 +45,7 @@ public class Game implements Runnable{
 		start();//Ruft die Methode start() zum initialisieren des Threads auf.
 	}
 	
-	/*
+	/**
 	 * Diese Methode wird beim starten des Threads aufgerufen. Sie beeinhaltet die Initilaisierung und die Hauptspiel-Schleife.
 	 * 
 	 */
@@ -85,7 +85,7 @@ public class Game implements Runnable{
 		
 	}
 	
-	/*
+	/**
 	 * Diese Methode Initialisiert diverse Objekte, welche für das Programm notwendig sind.
 	 */
 	private void init(){
@@ -96,13 +96,13 @@ public class Game implements Runnable{
 		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
 		camera = levelLoader.loadLevel(character.name(), level);//Lädt das erste Level vom "Jaime" Charakter
-		background= new Background(BackgroundType.Night, imageLoader);
+		background= new Background(BackgroundType.Castle, imageLoader);
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		
 		
 	}
 	
-	/*
+	/**
 	 * Methode welche alle Spielobjekte aktualisiert(z.B. Schwerkraft des Spielers)
 	 */
 	public void tick(){
@@ -119,8 +119,8 @@ public class Game implements Runnable{
 		}
 	}
 	
-	/*
-	 * //Methode zum malen von diversen Grafiken.
+	/**
+	 * Methode zum malen von diversen Grafiken.
 	 */
 	public void render(){
 		BufferStrategy bs = window.getBufferStrategy();//Es wird eine Strategie geladen, welche es dem Programm ermöglicht Grafiken im Voraus vorzumalen, um effizienter mit den Resourcen des Computers umzugehen.
@@ -170,7 +170,7 @@ public class Game implements Runnable{
 		
 	}
 	
-	/*
+	/**
 	 * Startet das Spiel.
 	 */
 	private synchronized void start(){//Startet das Programm über einen Thread, welcher alle Berechnungen und Grafiken lädt.
@@ -179,7 +179,7 @@ public class Game implements Runnable{
 		thread.start();//Der erstellte Thread wird gestartet.(Die Methode run() wird ausgeführt.
 	}
 	
-	/*
+	/**
 	 * Beendet das Spiel.
 	 */
 	public synchronized void stop() {//Stoppt das Programm und den Thread.
