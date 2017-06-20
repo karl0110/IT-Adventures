@@ -1,7 +1,11 @@
 package com.it.main;
 
 import java.awt.Graphics;
-
+/**
+ * 
+ * @author Karl,Jaime,Vincent
+ *
+ */
 
 
 public class Player extends LivingTileEntity{
@@ -30,6 +34,10 @@ public class Player extends LivingTileEntity{
 
 	public void render(Graphics g) {
 
+		/**
+		 * Bewegungsanimationen des Charakters werden je nach Bewegung "abgespielt" (mehrere Bilder nacheinander)
+		 */
+		
 		if(velX>0){
 			if(!jumping){
 				rightWalkAnimator.renderAnimation(g, x, y, width, height);
@@ -49,24 +57,26 @@ public class Player extends LivingTileEntity{
 		else idleAnimator.renderAnimation(g, x, y, width, height);
 	}
 
-	/**
-	 * 
-	 */
+
 	public void tick() {
 		
+		// Künstliche Gravitation für den Spieler wenn er fällt oder springt (also immer)
 		
 		x += velX;
 		y += velY;
 		
-		// Künstliche Gravitation für den Spieler wenn er fällt oder springt (also immer)
 		if(falling || jumping){ 
 			
-			velY += 0.981f; // Y-Wert steigt immer (wird durch Kollision unterbrochen)
+			velY += 0.981f; // Y-Wert des Spielers steigt immer (wird durch Kollision unterbrochen)
 		}
-		collision();
+		collision(); // @see TileEntity
 		
 		
 		healthBar.reloadCoordinates(x, y);
+		
+		/**
+		 * Bewegungsanimationen des Charakters werden je nach Bewegung "abgespielt" (mehrere Bilder nacheinander)
+		 */
 		
 		if(velX==0)idleAnimator.runAnimation();
 		else if(velX>0){
@@ -86,7 +96,7 @@ public class Player extends LivingTileEntity{
 			}
 		}
 		
-		if(y>Game.HEIGHT){
+		if(y>Game.HEIGHT){ // Von der Spielwelt zu fallen/springen führt zum Tod des Spielers
 			health=0;
 		}
 		
@@ -101,9 +111,19 @@ public class Player extends LivingTileEntity{
 			facingRight=false;
 		}
 		
-		if(cooldown>0){
+		// @see LivingTileEntity
+		if(cooldown>0){ 
 			cooldown--;
 		}
+	}
+	
+	// Get-und Set-Methode für die Blickrichtung des Spielers
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
 	}
 	
 	
@@ -116,10 +136,10 @@ public class Player extends LivingTileEntity{
 	public void leftCollisionReaction(Tile tempObject) {
 		x=tempObject.getX()+tempObject.getWidth()+1;
 		velX=0;
-		if (tempObject.getType()==TileType.Lava) {
+		if (tempObject.getType()==TileType.Lava) { // Lava berühren führt zum Tod des Spielers
 			health=0;
 			}
-		if(tempObject.getType()==TileType.USB){
+		if(tempObject.getType()==TileType.USB){ // Am Ende jedes Levels befindet sich ein USB-Stick den es zu berühren gilt, um ins nächste Level zu gelangen
 			game.nextLevel();
 			game.loadNewLevel();
 		}
@@ -137,14 +157,6 @@ public class Player extends LivingTileEntity{
 			game.loadNewLevel();
 		}
 		
-	}
-
-	public boolean isFacingRight() {
-		return facingRight;
-	}
-
-	public void setFacingRight(boolean facingRight) {
-		this.facingRight = facingRight;
 	}
 
 	@Override
