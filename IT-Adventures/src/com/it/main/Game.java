@@ -26,12 +26,13 @@ public class Game implements Runnable{
 	private BufferedImageLoader imageLoader;
 	private TileHandler handler;
 	private BufferedImage gameOverImage;
+	private CharacterMenu characterMenu;
 	
 	private int levelNumber;
 	private CharacterType character;
 	private Level[][] levels;
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
-		MainMenu,PlayMenu,Game,GameOver
+		MainMenu,PlayMenu,Game,GameOver,CharacterMenu
 	};
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
@@ -91,12 +92,18 @@ public class Game implements Runnable{
 		handler=new TileHandler();//Der GameObjectHandler ist für das speichern aller Spielobjekte zuständig.
 		window.addKeyListener(new KeyInput(handler,imageLoader));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new MainMenu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
-		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		
 		levels=new Level[4][10];
 		levels[0][0]=new Level(imageLoader, handler,this,true,0,2);
 		levels[0][0].loadLevel();
+		
+		characterMenu=new CharacterMenu(imageLoader);
+		window.addMouseListener(new MouseInput(menu,this,characterMenu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
+		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
+		
+		
+		
+		
 	}
 	
 	/**
@@ -114,6 +121,9 @@ public class Game implements Runnable{
 			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, werden alle Spielobjekte über den GameObjectHandler aktualisiert.
 			levels[character.characterNumber][levelNumber].getCamera().tick();
 		}
+		else if(Game.State==Game.STATE.CharacterMenu){
+			characterMenu.tick();
+		}
 	}
 	
 	/**
@@ -125,7 +135,6 @@ public class Game implements Runnable{
 			window.createBufferStrategy(3);//Falls noch keine Strategie vorhanden ist, wird eine neue erstellt. Die 3 im Parameter bedeutet, dass zwei bilder im voraus gemalt werden.
 			return;
 		}
-		
 		Graphics g = bs.getDrawGraphics();//Von dem BufferStrategy Objekt wird dann ein Graphics Objekt geholt, welches zum eigentlichen malen der Grafiken gebraucht wird.
 		Graphics2D g2d=(Graphics2D)g;
 		////////////////Bereich zum zeichnen von diversen Grafiken
@@ -150,6 +159,9 @@ public class Game implements Runnable{
 			handler.render(g);
 			g.drawImage(gameOverImage, 0,0,WIDTH,HEIGHT, null);
 			
+		}
+		else if(Game.State==Game.STATE.CharacterMenu){
+			characterMenu.render(g);
 		}
 		
 		///////////////////Ende des Bereiches.

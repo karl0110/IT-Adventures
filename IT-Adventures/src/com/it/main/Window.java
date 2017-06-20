@@ -29,5 +29,14 @@ public class Window extends Canvas {
 		frame.setVisible(true);//Macht das Fenster sichtbar.
 	}
 
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	
 	
 }
