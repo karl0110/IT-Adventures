@@ -9,10 +9,11 @@ public class Player extends LivingTileEntity{
 	private Animator idleAnimator,rightWalkAnimator,leftWalkAnimator,rightJumpAnimator,leftJumpAnimator;
 	
 	public  final static float MAXHEALTH=100;
+	private Game game;
 	
 	
 	
-	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, TileType type,CharacterType characterType) {
+	public Player(float x, float y, BufferedImageLoader imageLoader, TileHandler handler, TileType type,CharacterType characterType,Game game) {
 		super(x, y, imageLoader, type,handler);
 		this.handler=handler;
 		falling=true;
@@ -23,6 +24,7 @@ public class Player extends LivingTileEntity{
 		leftJumpAnimator=new Animator(imageLoader.getImageSet("/images/character_jump_left_ss.png", 3, width, height,characterType.ssCol),15);
 		health=MAXHEALTH;
 		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this));
+		this.game=game;
 		
 	}
 
@@ -110,7 +112,13 @@ public class Player extends LivingTileEntity{
 	public void leftCollisionReaction(Tile tempObject) {
 		x=tempObject.getX()+tempObject.getWidth()+1;
 		velX=0;
-		if (tempObject.getType()==TileType.Lava) {health=0;}
+		if (tempObject.getType()==TileType.Lava) {
+			health=0;
+			}
+		if(tempObject.getType()==TileType.USB){
+			game.nextLevel();
+			game.loadNewLevel();
+		}
 		
 	}
 
@@ -119,6 +127,11 @@ public class Player extends LivingTileEntity{
 		x=tempObject.getX()-(int)width-1;
 		velX=0;
 		if (tempObject.getType()==TileType.Lava) {health=0;}
+		
+		if(tempObject.getType()==TileType.USB){
+			game.nextLevel();
+			game.loadNewLevel();
+		}
 		
 	}
 
@@ -136,6 +149,11 @@ public class Player extends LivingTileEntity{
 		velY=0;
 		if (tempObject.getType()==TileType.Lava) {health=0;}
 		
+		if(tempObject.getType()==TileType.USB){
+			game.nextLevel();
+			game.loadNewLevel();
+		}
+		
 	}
 
 	@Override
@@ -145,6 +163,11 @@ public class Player extends LivingTileEntity{
 		if(jumping==true)jumping = false;
 		velY=0;
 		if (tempObject.getType()==TileType.Lava) {health=0;}
+		
+		if(tempObject.getType()==TileType.USB){
+			game.nextLevel();
+			game.loadNewLevel();
+		}
 		
 	}
 

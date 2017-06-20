@@ -14,7 +14,8 @@ public enum TileType {
 	IceBottom("/images/block_sprite_sheet.png",false,false,32,32,6,1),
 	IceTop("/images/block_sprite_sheet.png",false,false,32,32,7,1),
 	Brick("/images/block_sprite_sheet.png",false,false,32,32,9,1),
-	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,4,1);
+	HangingGrass("/images/block_sprite_sheet.png",false,true,32,32,4,1),
+	USB("/images/block_sprite_sheet.png",false,false,32,32,1,2);
 	
 	
 	
