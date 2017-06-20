@@ -100,6 +100,10 @@ public class Player extends LivingTileEntity{
 		else if(velX<0){
 			facingRight=false;
 		}
+		
+		if(cooldown>0){
+			cooldown--;
+		}
 	}
 	
 	

@@ -39,7 +39,7 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setJumping(true);
 				}
 				
-				if(key==KeyEvent.VK_ENTER){
+				if(key==KeyEvent.VK_ENTER && ((Player)tempObject).getCooldown()==0){
 					int shotX;
 					int shotY;
 					boolean facingRight;
@@ -53,6 +53,7 @@ public class KeyInput extends KeyAdapter{
 					}
 					facingRight=((Player)tempObject).isFacingRight();
 					handler.addObject(new Shot(shotX, shotY, imageLoader, TileType.Shot, handler, 600, 10, facingRight, 1, 6));
+					((Player)tempObject).setCooldown(30);
 				}
 			}
 			

@@ -6,7 +6,7 @@ public class Enemy extends LivingTileEntity{
 
 	private float leftPatrolCoordinate,rightPatrolCoordinate;
 	private Player player;
-	private int cooldown;
+	
 	
 	public Enemy(float x, float y, BufferedImageLoader imageLoader, TileType type,TileHandler handler,EnemyType enemyType,Player player) {
 		super(x, y, imageLoader, type,handler);
@@ -16,7 +16,6 @@ public class Enemy extends LivingTileEntity{
 		rightPatrolCoordinate=x+600;
 		facingRight=true;
 		this.player=player;
-		cooldown=0;
 		handler.addObject(healthBar=new HealthBar(0,0, imageLoader, TileType.HealthBar, handler, this));
 		health=Player.MAXHEALTH;
 	}
