@@ -2,7 +2,12 @@ package com.it.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
+/**
+ * 
+ * @author Jaime,Vincent(Navigator)
+ *
+ * Klasse zum Laden aller Grafik-Segmente für den Spielhintergrund zur Vereinfachung von dessen Erstellung
+ */
 public class Background{
 
 	private BackgroundType backgroundType;
@@ -20,8 +25,9 @@ public class Background{
 		createLevel();
 	}
 	
+	// Anstelle eines festen Bildes für den gesamten Hintergrund werden Bild-Segmente verwendet...
 	private void createLevel(){
-		int numberOfSegments = (int) ((Game.WIDTH/backgroundType.width)+1);
+		int numberOfSegments = (int) ((Game.WIDTH/backgroundType.width)+1); //...,diese werden nach Breite des Spieles festgelegt
 		images=new BufferedImage[numberOfSegments];
 		for(int i=0;i<numberOfSegments;i++){
 			int index = (Math.round((float)Math.random()*imagePaths.length))-1;
