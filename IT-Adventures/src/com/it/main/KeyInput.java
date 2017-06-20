@@ -12,6 +12,7 @@ public class KeyInput extends KeyAdapter{
 	private TileHandler handler;
 	private BufferedImageLoader imageLoader;
 	
+	
 	public KeyInput(TileHandler handler,BufferedImageLoader imageLoader) {
 		this.handler = handler;
 		this.imageLoader=imageLoader;
