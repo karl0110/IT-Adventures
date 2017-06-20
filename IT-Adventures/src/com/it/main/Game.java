@@ -40,7 +40,7 @@ public class Game implements Runnable{
 	
 	public Game(){
 		window=new Window(TITLE,WIDTH,HEIGHT);
-		level=1;
+		level=3;
 		character=CharacterType.Jaime;
 		start();//Ruft die Methode start() zum initialisieren des Threads auf.
 	}
