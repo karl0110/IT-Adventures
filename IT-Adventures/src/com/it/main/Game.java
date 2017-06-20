@@ -25,13 +25,11 @@ public class Game implements Runnable{
 	private MainMenu menu;
 	private BufferedImageLoader imageLoader;
 	private TileHandler handler;
-	private Camera camera;
-	private Background background;
-	private LevelLoader levelLoader;
 	private BufferedImage gameOverImage;
 	
-	private int level;
+	private int levelNumber;
 	private CharacterType character;
+	private Level[][] levels;
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
 		MainMenu,PlayMenu,Game,GameOver
 	};
@@ -40,7 +38,7 @@ public class Game implements Runnable{
 	
 	public Game(){
 		window=new Window(TITLE,WIDTH,HEIGHT);
-		level=1;
+		levelNumber=0;
 		character=CharacterType.Jaime;
 		start();//Ruft die Methode start() zum initialisieren des Threads auf.
 	}
@@ -94,12 +92,11 @@ public class Game implements Runnable{
 		window.addKeyListener(new KeyInput(handler,imageLoader));//Klasse welche bei Tastendrücken überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		menu=new MainMenu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		window.addMouseListener(new MouseInput(menu,this));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
-		levelLoader = new LevelLoader(imageLoader, handler,this);//Klasse zum erstellen von den Spielobjekten einzelner Level, diese werden durch ein Bild geladen, um einfaches Leveldesign zu ermöglichen.
-		camera = levelLoader.loadLevel(character.name(), level);//Lädt das erste Level vom "Jaime" Charakter
-		background= new Background(BackgroundType.Castle, imageLoader);
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		
-		
+		levels=new Level[4][10];
+		levels[0][0]=new Level(imageLoader, handler,this,true,0,0);
+		levels[0][0].loadLevel();
 	}
 	
 	/**
@@ -115,7 +112,7 @@ public class Game implements Runnable{
 		}
 		else if(Game.State==Game.STATE.Game){
 			handler.tick();//Wenn der Zustand des Spieles das Spiel selber ist, werden alle Spielobjekte über den GameObjectHandler aktualisiert.
-			camera.tick();
+			levels[character.characterNumber][levelNumber].getCamera().tick();
 		}
 	}
 	
@@ -143,13 +140,13 @@ public class Game implements Runnable{
 		else if(Game.State==Game.STATE.Game){
 			
 			
-			background.render(g);
-			g2d.translate(camera.getX(), camera.getY());
+			levels[character.characterNumber][levelNumber].getBackground().render(g);
+			g2d.translate(levels[character.characterNumber][levelNumber].getCamera().getX(), levels[character.characterNumber][levelNumber].getCamera().getY());
 			handler.render(g);////Wenn der Zustand des Spieles das Spiel selber ist, werden die Grafiken von allen Spielobjekten über den GameObjectHandler geladen.
-			g2d.translate(-camera.getX(), -camera.getY());
+			g2d.translate(-levels[character.characterNumber][levelNumber].getCamera().getX(), -levels[character.characterNumber][levelNumber].getCamera().getY());
 		}
 		else if(Game.State==Game.STATE.GameOver){
-			background.render(g);
+			levels[character.characterNumber][levelNumber].getBackground().render(g);
 			handler.render(g);
 			g.drawImage(gameOverImage, 0,0,WIDTH,HEIGHT, null);
 			
@@ -194,15 +191,26 @@ public class Game implements Runnable{
 	}
 	
 	public void nextLevel(){
-		level++;
+		levelNumber++;
 	}
-	
-	public void changeCharacter(CharacterType newCharacter){
-		character=newCharacter;
-	}
-	
+
 	public void loadNewLevel(){
-		camera=levelLoader.loadLevel(character.name(), level);
+		if(levels[character.characterNumber][levelNumber]==null){
+			levels[character.characterNumber][levelNumber]=new Level(imageLoader, handler, this, true, character.characterNumber, levelNumber);
+			levels[character.characterNumber][levelNumber].loadLevel();
+		}
+		else{
+			levels[character.characterNumber][levelNumber].loadLevel();
+		}
 	}
+
+	public CharacterType getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(CharacterType character) {
+		this.character = character;
+	}
+	
 	
 }

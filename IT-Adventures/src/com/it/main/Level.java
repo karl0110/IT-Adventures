@@ -2,22 +2,31 @@ package com.it.main;
 
 import java.awt.image.BufferedImage;
 
-public class LevelLoader {
+public class Level {
 
-	BufferedImageLoader imageLoader;
-	TileHandler handler;
-	Game game;
+	private BufferedImageLoader imageLoader;
+	private TileHandler handler;
+	private Game game;
+	private boolean unlocked;
+	private int characterNumber,levelNumber;
+	private Player player;
+	private Camera camera;
+	private Background background;
 	
-	public LevelLoader(BufferedImageLoader imageLoader,TileHandler handler,Game game){
+	public Level(BufferedImageLoader imageLoader,TileHandler handler,Game game,boolean unlocked,int characterNumber, int levelNumber){
 		this.imageLoader=imageLoader;
 		this.handler=handler;
 		this.game=game;
+		this.unlocked=unlocked;
+		this.characterNumber=characterNumber;
+		this.levelNumber=levelNumber;
+		background=new Background(BackgroundType.Day, imageLoader);
 	}
 	
-	public Camera loadLevel(String characterName,int level){
+	public void loadLevel(){
 		
 		handler.removeAllObjects();
-		BufferedImage levelImage = imageLoader.loadImage("/levelImages/"+characterName+"_"+level+".png");
+		BufferedImage levelImage = imageLoader.loadImage("/levelImages/"+characterNumber+"_"+levelNumber+".png");
 		BufferedImage gras = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 2, 1, 32, 32);
 		BufferedImage dirt = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 1, 1, 32, 32);
 		BufferedImage stone = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 3, 1, 32, 32);
@@ -27,7 +36,6 @@ public class LevelLoader {
 		BufferedImage iceTop = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 7, 1, 32, 32);
 		BufferedImage brick = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 9, 1, 32, 32);
 		BufferedImage usb = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 1, 2, 32, 32);
-		Player player = null;
 		for(int xx=0;xx<levelImage.getWidth();xx++){
 			for(int yy=0;yy<levelImage.getHeight();yy++){
 				
@@ -62,8 +70,51 @@ public class LevelLoader {
 				else if(red==17&&green==0&&blue==119)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.USB,usb,player));
 			}
 		}
-		return new Camera(0,0,player);
+		camera= new Camera(0,0,player);
 		
 		
 	}
+
+	public boolean isUnlocked() {
+		return unlocked;
+	}
+
+	public void setUnlocked(boolean unlocked) {
+		this.unlocked = unlocked;
+	}
+
+	public int getCharacterNumber() {
+		return characterNumber;
+	}
+
+	public void setCharacterNumber(int characterNumber) {
+		this.characterNumber = characterNumber;
+	}
+
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+
+	public Background getBackground() {
+		return background;
+	}
+
+	public void setBackground(Background background) {
+		this.background = background;
+	}
+	
+	
+	
 }
