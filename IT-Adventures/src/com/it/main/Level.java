@@ -31,6 +31,9 @@ public class Level {
 			case 2:
 				backgroundType=BackgroundType.Castle;
 				break;
+			case 3:
+				backgroundType=BackgroundType.Snow;
+				break;
 			
 		}
 		background=new Background(backgroundType, imageLoader);
