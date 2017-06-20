@@ -57,14 +57,14 @@ public class Enemy extends LivingTileEntity{
 			}
 		}
 		
-		if(y==player.getY()){
+		if(y-player.getY()>20 && y-player.getY() >0 || player.getY()-y>20 && player.getY()-y >0){
 			if(cooldown==0){
-				if(x-player.getX()<400){
-					handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
+				if(x-player.getX()<400&&x-player.getX()>0){
+					handler.addObject(new Shot(x-width-TileType.Shot.width,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, false, 1, 6));
 					cooldown=60;
 				}
-				else if(player.getX()-x<400){
-					handler.addObject(new Shot(x-64,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, true, 1, 6));
+				else if(player.getX()-x<400&&player.getX()-x>0){
+					handler.addObject(new Shot(x+width,y+height/2, imageLoader, TileType.Shot, handler, 600, 20, true, 1, 6));
 					cooldown=60;
 				}
 			}
