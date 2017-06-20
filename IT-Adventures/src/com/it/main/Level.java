@@ -23,7 +23,7 @@ public class Level {
 		BackgroundType backgroundType=null;;
 		switch(levelNumber){
 			case 0:
-				backgroundType=BackgroundType.Day;
+				backgroundType=BackgroundType.Snow;
 				break;
 			case 1:
 				backgroundType=BackgroundType.Night;
