@@ -95,7 +95,7 @@ public class Game implements Runnable{
 		menu=new MainMenu(imageLoader,this);//Menu Klasse ist für das aktualisieren und rendern des Hauptmenüs zuständig.
 		
 		levels=new Level[4][10];
-		levels[0][0]=new Level(imageLoader, handler,this,true,0,3);
+		levels[0][0]=new Level(imageLoader, handler,this,true,0,0);
 		levels[0][0].loadLevel();
 		
 		characterMenu=new CharacterMenu(imageLoader,this);
