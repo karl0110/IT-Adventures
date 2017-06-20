@@ -79,11 +79,11 @@ public class MouseInput implements MouseListener {
 				Rectangle level0 = new Rectangle(0,Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
 				Rectangle level1 = new Rectangle(Game.WIDTH/4,Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
 				Rectangle level2 = new Rectangle(Game.WIDTH/2,Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
-//				Rectangle level3 = new Rectangle(Game.WIDTH / 2 + Game.WIDTH / 4,Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
-//				Rectangle level4 = new Rectangle(0,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
-//				Rectangle level5 = new Rectangle(Game.WIDTH/4,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
-//				Rectangle level6 = new Rectangle(Game.WIDTH/2,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
-//				Rectangle level7 = new Rectangle(Game.WIDTH / 2 + Game.WIDTH / 4,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
+				Rectangle level3 = new Rectangle(Game.WIDTH / 2 + Game.WIDTH / 4,Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
+				Rectangle level4 = new Rectangle(0,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
+				Rectangle level5 = new Rectangle(Game.WIDTH/4,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
+				Rectangle level6 = new Rectangle(Game.WIDTH/2,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
+				Rectangle level7 = new Rectangle(Game.WIDTH / 2 + Game.WIDTH / 4,((3*Game.HEIGHT/4)/2)+Game.HEIGHT/4,Game.WIDTH/4,(3*Game.HEIGHT/4)/2);
 				if(level0.intersects(mouse)){
 					characterMenu.setSelectedLevel(0);
 				}
@@ -93,24 +93,30 @@ public class MouseInput implements MouseListener {
 				if(level2.intersects(mouse)){
 					characterMenu.setSelectedLevel(2);
 				}
-//				if(level3.intersects(mouse)){
-//					characterMenu.setSelectedLevel(3);
-//				}
-//				if(level4.intersects(mouse)){
-//					characterMenu.setSelectedLevel(4);
-//				}
-//				if(level5.intersects(mouse)){
-//					characterMenu.setSelectedLevel(5);
-//				}
-//				if(level6.intersects(mouse)){
-//					characterMenu.setSelectedLevel(6);
-//				}
-//				if(level7.intersects(mouse)){
-//					characterMenu.setSelectedLevel(7);
-//				}
+				if(level3.intersects(mouse)){
+					characterMenu.setSelectedLevel(3);
+				}
+				if(level4.intersects(mouse)){
+					characterMenu.setSelectedLevel(4);
+				}
+				if(level5.intersects(mouse)){
+					characterMenu.setSelectedLevel(5);
+				}
+				if(level6.intersects(mouse)){
+					characterMenu.setSelectedLevel(6);
+				}
+				if(level7.intersects(mouse)){
+					characterMenu.setSelectedLevel(7);
+				}
 			}
 		}
 		else if(Game.State==Game.STATE.Story){
+			Rectangle continueButton = new Rectangle(0,0,Game.WIDTH,Game.HEIGHT);
+			if(continueButton.intersects(mouse)){
+				Game.State=Game.STATE.Tutorial;
+			}
+		}
+		else if(Game.State==Game.STATE.Tutorial){
 			Rectangle continueButton = new Rectangle(0,0,Game.WIDTH,Game.HEIGHT);
 			if(continueButton.intersects(mouse)){
 				Game.State=Game.STATE.Game;

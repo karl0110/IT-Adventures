@@ -27,13 +27,14 @@ public class Game implements Runnable{
 	private TileHandler handler;
 	private BufferedImage gameOverImage;
 	private BufferedImage story;
+	private BufferedImage tutorial;
 	private CharacterMenu characterMenu;
 	
 	private int levelNumber;
 	private CharacterType character;
 	private Level[][] levels;
 	public enum STATE{//Enum zum Speichern der Verschiedenen Zustände des Spieles.
-		MainMenu,PlayMenu,Game,GameOver,CharacterMenu,Story
+		MainMenu,PlayMenu,Game,GameOver,CharacterMenu,Story,Tutorial
 	};
 	public static STATE State=STATE.MainMenu;//Der aktuelle Zustand des Spiels, ist am Anfang das Hauptmenü.
 	
@@ -102,6 +103,7 @@ public class Game implements Runnable{
 		window.addMouseListener(new MouseInput(menu,this,characterMenu));//Klasse welche bei Maus-Klicks überprüft, ob diese relevant für das Spiel sind und reagiert entsprechend.
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		story=imageLoader.loadImage("/images/Intro-Background.png");
+		tutorial=imageLoader.loadImage("/images/tutorial.png");
 		
 		
 		
@@ -166,6 +168,9 @@ public class Game implements Runnable{
 		}
 		else if(Game.State==Game.STATE.Story){
 			g.drawImage(story, 0, 0,Game.WIDTH,Game.HEIGHT, null);
+		}
+		else if(Game.State==Game.STATE.Tutorial){
+			g.drawImage(tutorial, 0, 0,Game.WIDTH,Game.HEIGHT, null);
 		}
 		
 		///////////////////Ende des Bereiches.
