@@ -12,7 +12,7 @@ public class Camera {
 	}
 	
 	public void tick(){
-		x= -player.getX() + (Game.WIDTH/2);
+		x+= ((-player.getX() + (Game.WIDTH/2))-x)*0.15;
 		
 	}
 
