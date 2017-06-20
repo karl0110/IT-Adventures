@@ -8,7 +8,7 @@ public abstract class LivingTileEntity extends TileEntity {
 	
 	public LivingTileEntity(float x, float y, BufferedImageLoader imageLoader, TileType type, TileHandler handler) {
 		super(x, y, imageLoader, type, handler);
-		// TODO Auto-generated constructor stub
+		isLivingTileEntity=true;
 	}
 
 	

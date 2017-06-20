@@ -95,7 +95,7 @@ public class Game implements Runnable{
 		gameOverImage=imageLoader.loadImage("/images/gameOver.png");
 		
 		levels=new Level[4][10];
-		levels[0][0]=new Level(imageLoader, handler,this,true,0,0);
+		levels[0][0]=new Level(imageLoader, handler,this,true,0,2);
 		levels[0][0].loadLevel();
 	}
 	

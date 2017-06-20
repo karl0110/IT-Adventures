@@ -21,6 +21,8 @@ public class Enemy extends LivingTileEntity{
 		health=Player.MAXHEALTH;
 	}
 
+	
+	
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(image, (int)x, (int)y,(int)width,(int)height, null);
@@ -113,5 +115,8 @@ public class Enemy extends LivingTileEntity{
 		velY=0;
 		
 	}
+
+
+
 
 }
