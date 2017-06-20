@@ -49,6 +49,7 @@ public class Level {
 		BufferedImage iceTop = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 7, 1, 32, 32);
 		BufferedImage brick = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 9, 1, 32, 32);
 		BufferedImage usb = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 1, 2, 32, 32);
+		BufferedImage sign = imageLoader.loadImageFromSS("/images/block_sprite_sheet.png", 1, 10, 32, 32);
 		for(int xx=0;xx<levelImage.getWidth();xx++){
 			for(int yy=0;yy<levelImage.getHeight();yy++){
 				
@@ -81,6 +82,7 @@ public class Level {
 				else if(red==39&&green==63&&blue==39)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Brick,brick,player));	
 				else if(red==0&&green==0&&blue==255)handler.addObject(new Enemy(xx*32,yy*32,imageLoader,TileType.Enemy,handler,EnemyType.Virus,player));
 				else if(red==17&&green==0&&blue==119)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.USB,usb,player));
+				else if(red==150&&green==0&&blue==150)handler.addObject(new Block(xx*32,yy*32,imageLoader,TileType.Sign,sign,player));
 			}
 		}
 		camera= new Camera(0,0,player);

@@ -15,7 +15,8 @@ public enum TileType {
 	IceTop(false,32,32,7,1),
 	Brick(false,32,32,9,1),
 	HangingGrass(true,32,32,4,1),
-	USB(false,32,32,1,2);
+	USB(false,32,32,1,2),
+	Sign(true,32,32,10,1);
 	
 	boolean passable;
 	float width,height;
