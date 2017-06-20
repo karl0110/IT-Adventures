@@ -2,9 +2,9 @@ package com.it.main;
 
 public enum TileType {
 	
-	Player("",true,false,32,64,0,0),
-	Enemy("",true,false,32,64,0,0),
-	Shot("",true,false,32,32,0,0),
+	Player("",true,true,32,64,0,0),
+	Enemy("",true,true,32,64,0,0),
+	Shot("",true,true,32,32,0,0),
 	HealthBar("",false,true,32,5,0,0),
 	Stone("/images/block_sprite_sheet.png",false,false,32,32,3,1),
 	Dirt("/images/block_sprite_sheet.png",false,false,32,32,1,1),

@@ -20,7 +20,20 @@ public class Level {
 		this.unlocked=unlocked;
 		this.characterNumber=characterNumber;
 		this.levelNumber=levelNumber;
-		background=new Background(BackgroundType.Castle, imageLoader);
+		BackgroundType backgroundType=null;;
+		switch(levelNumber){
+			case 0:
+				backgroundType=BackgroundType.Day;
+				break;
+			case 1:
+				backgroundType=BackgroundType.Night;
+				break;
+			case 2:
+				backgroundType=BackgroundType.Castle;
+				break;
+			
+		}
+		background=new Background(backgroundType, imageLoader);
 	}
 	
 	public void loadLevel(){
